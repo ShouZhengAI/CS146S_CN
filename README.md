@@ -63,13 +63,11 @@
 **Febie Lin：** 周三 9:00-11:00 AM (Huang 地下室)
 
 ### 作业截止日期
-
-[日历](https://docs.google.com/spreadsheets/d/1-485SLHw_zn7A-UXiz88Dgjy_qUGx87Am6HUwQrKsN8/edit?gid=0#gid=0)
-
+> [日历](https://docs.google.com/spreadsheets/d/1-485SLHw_zn7A-UXiz88Dgjy_qUGx87Am6HUwQrKsN8/edit?gid=0#gid=0)
 ---
 
 ## 团队
-
+![](team.png)
 ---
 
 # 教学大纲
