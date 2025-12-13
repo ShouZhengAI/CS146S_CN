@@ -26,7 +26,6 @@
     * [评分](#评分)
 * [FAQ](#faq)
     * [常见问题](#常见问题)
-    * [联系信息](#联系信息)
 * [相关资源-vibe coding项目](#相关资源)
 * [许可证](#许可证)
 
@@ -406,13 +405,7 @@
 
 ---
 
-## 联系信息
 
-**课程邮箱：** 待定 (**TBA**)
-
-**Ed Discussion：** 将向注册学生提供链接
-
-**Canvas：** 所有课程材料和提交均通过 Stanford Canvas 进行
 
 # 相关项目资源
 
@@ -423,9 +416,6 @@
 | Vibe Coding Workflow | 提供一个5阶段AI工作流程，用于快速构建MVP，使用结构化文档和通用代理指令指导Claude Code和Cursor等工具。 | [link](https://github.com/KhazP/vibe-coding-prompt-template) |
 | Rulebook AI | 一个CLI工具，用于打包和部署一致的专家环境到AI编码助手，通过可移植的“Packs”和版本化规则确保跨工具的一致性。 | [link](https://github.com/botingw/rulebook-ai) |
 | Vibe Kanban | 一个基于Rust的编排平台，用于管理AI编码代理（如Claude Code、Gemini CLI），支持任务切换、并行执行和集中MCP配置。 | [link](https://github.com/BloopAI/vibe-kanban) |
-
-
-
 
 # 许可证
 
