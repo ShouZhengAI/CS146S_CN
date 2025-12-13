@@ -40,7 +40,8 @@
     * [第 8 周：自动化 UI 和应用构建](#第-8-周自动化-ui-和应用构建)
     * [第 9 周：Agent 部署后](#第-9-周agent-部署后)
     * [第 10 周：AI 软件工程的未来](#第-10-周ai-软件工程的未来)
-    * [评分](#评分)
+* [本地ai应用](#本地应用)
+* [vibe coding命令行工具](#命令行工具)
 * [FAQ 常见问题](#常见问题)
 * [相关资源-vibe coding项目](#相关资源)
 
@@ -351,7 +352,26 @@
 ---
 
 
-## FAQ 常见问题
+## 本地应用
+- [Dyad](https://www.dyad.sh/) - 免费、本地、开源的AI应用构建器
+
+## 命令行工具
+
+- [anthropics/claude-code](https://github.com/anthropics/claude-code) - 理解你的代码库、自动化任务、解释代码和管理git的编程代理，全部通过自然语言。
+- [aider](https://aider.chat/) - 在终端中进行AI结对编程。
+- [codename goose](https://block.github.io/goose/) - 本地机器AI代理，允许你使用任何LLM并添加任何MCP服务器作为扩展
+- [MyCoder.ai](https://github.com/drivecore/mycoder) - 开源AI驱动的编程助手，具有Git和GitHub集成，支持并行执行和自修改功能。
+- [ai-christianson/RA.Aid](https://github.com/ai-christianson/RA.Aid) - 基于LangGraph代理任务执行框架构建的独立编程代理
+- [CodeSelect](https://github.com/maynetee/codeselect) - 基于Python的命令行工具，高效地将项目源代码传达给AI。
+- [OpenAI Codex CLI](https://github.com/openai/codex) - OpenAI的轻量级编程代理，在终端中运行
+- [Gemini CLI](https://github.com/google-gemini/gemini-cli) - 谷歌开源的AI代理，将 Gemini 的强大功能直接带入您的终端。
+- [vibe-cli](https://github.com/Jinjos/vibe-cli) - 氛围编程工作流的命令行界面。
+- [langchain-code](https://github.com/zamalali/langchain-code) - 基于LangChain的编程代理，用于AI辅助开发。
+- [kimi-cli](https://github.com/MoonshotAI/kimi-cli) - Kimi官方命令行界面，一个帮助编程任务和开发工作流的AI助手。
+
+
+## 常见问题
+<details>
 
 #### 本课程将使用哪些编程语言？
 
@@ -381,6 +401,8 @@
 
 我们对斯坦福大学的学生和教职员工的旁听请求持开放态度。您将能够参加所有讲座，但我们无法对您的作业评分或提供期末项目建议。
 
+</details>
+
 ---
 
 
@@ -389,11 +411,16 @@
 
 | 名称 | 简要 | 链接 |
 |----------|----------|------|
-| Awesome Vibe Coding | 一个精选的vibe coding参考列表，专注于通过AI协作编写代码，包括工具、概念和提示工程指南。 | [link](https://github.com/filipecalegario/awesome-vibe-coding) |
 | Context Engineering Template | 介绍上下文工程作为vibe coding的基础，教导如何使用CLAUDE.md和INITIAL.md等文件创建项目规则和功能请求，以实现一致的AI驱动开发。 | [link](https://github.com/coleam00/context-engineering-intro) |
 | Vibe Coding Workflow | 提供一个5阶段AI工作流程，用于快速构建MVP，使用结构化文档和通用代理指令指导Claude Code和Cursor等工具。 | [link](https://github.com/KhazP/vibe-coding-prompt-template) |
 | Rulebook AI | 一个CLI工具，用于打包和部署一致的专家环境到AI编码助手，通过可移植的“Packs”和版本化规则确保跨工具的一致性。 | [link](https://github.com/botingw/rulebook-ai) |
 | Vibe Kanban | 一个基于Rust的编排平台，用于管理AI编码代理（如Claude Code、Gemini CLI），支持任务切换、并行执行和集中MCP配置。 | [link](https://github.com/BloopAI/vibe-kanban) |
+
+
+## 🙏 Acknowledgement
+* [Awesome Vibe Coding](https://github.com/filipecalegario/awesome-vibe-coding) ：一个精选的vibe coding参考列表，专注于通过AI协作编写代码，包括工具、概念和提示工程指南。
+
+
 
 # 许可证
 
