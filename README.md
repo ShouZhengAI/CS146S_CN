@@ -1,7 +1,7 @@
 
 <h1 align="center">📚CS146S中文版课程</h1>
 
-**CS146S交流群**:
+**欢迎加入 动手学CS146S 交流群一起讨论**:
 <div align="center">
   <img src="group.png" width="20%" height="auto">
 </div>
@@ -28,6 +28,8 @@
     * [常见问题](#常见问题)
     * [联系信息](#联系信息)
 * [相关资源-vibe coding项目](#相关资源)
+* [许可证](许可证)
+
 
 
 # 概述
@@ -421,3 +423,10 @@
 | Vibe Coding Workflow | 提供一个5阶段AI工作流程，用于快速构建MVP，使用结构化文档和通用代理指令指导Claude Code和Cursor等工具。 | [link](https://github.com/KhazP/vibe-coding-prompt-template) |
 | Rulebook AI | 一个CLI工具，用于打包和部署一致的专家环境到AI编码助手，通过可移植的“Packs”和版本化规则确保跨工具的一致性。 | [link](https://github.com/botingw/rulebook-ai) |
 | Vibe Kanban | 一个基于Rust的编排平台，用于管理AI编码代理（如Claude Code、Gemini CLI），支持任务切换、并行执行和集中MCP配置。 | [link](https://github.com/BloopAI/vibe-kanban) |
+
+
+
+
+# 许可证
+
+本项目采用 MIT 许可证 - 详情请见 `LICENSE` 文件。
