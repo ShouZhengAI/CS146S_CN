@@ -3,7 +3,7 @@
 
 **CS146S交流群**:
 <div align="center">
-  <img src="group.png" width="30%" height="auto">
+  <img src="group.png" width="20%" height="auto">
 </div>
 
 * [概述](#概述)
