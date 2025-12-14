@@ -60,9 +60,9 @@
 
 - 课程安排
     
-- **LLM** 到底是什么
+- LLM 到底是什么
     
-- 如何有效进行 **prompt**
+- 如何有效进行 prompt
     
 
 **阅读材料**
@@ -83,9 +83,9 @@
 - [LLM Prompting Playground](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week1)
     
 
-**9月22日周一：** 导论和 **LLM** 的制作方式 - [Slides](https://docs.google.com/presentation/d/1zT2Ofy88cajLTLkd7TcuSM4BCELvF9qQdHmlz33i4t0/edit?usp=sharing)
+**9月22日周一：** 导论和 LLM 原理 - [Slides](https://docs.google.com/presentation/d/1zT2Ofy88cajLTLkd7TcuSM4BCELvF9qQdHmlz33i4t0/edit?usp=sharing)
 
-**9月26日周五：** 强大的 **LLM prompt** - [Slides](https://docs.google.com/presentation/d/1MIhw8p6TLGdbQ9TcxhXSs5BaPf5d_h77QY70RHNfeGs/edit?usp=drive_link)
+**9月26日周五：** 强大的 LLM prompt - [Slides](https://docs.google.com/presentation/d/1MIhw8p6TLGdbQ9TcxhXSs5BaPf5d_h77QY70RHNfeGs/edit?usp=drive_link)
 
 ---
 
