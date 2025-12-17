@@ -9,18 +9,20 @@
 Write the word backwards, letter by letter from end to beginning.
 
 Examples:
-hello -> olleh
-world -> dlrow
-python -> nohtyp
-example -> elpmaxe
-programming -> gnimmargorp
-statistics -> scitsitats
-teststring -> gnirtstset
+hello: h-e-l-l-o -> o-l-l-e-h = olleh
+world: w-o-r-l-d -> d-l-r-o-w = dlrow
+python: p-y-t-h-o-n -> n-o-h-t-y-p = nohtyp
+example: e-x-a-m-p-l-e -> e-l-p-m-a-x-e = elpmaxe
+programming: p-r-o-g-r-a-m-m-i-n-g -> g-n-i-m-m-a-r-g-o-r-p = gnimmargorp
+statistics: s-t-a-t-i-s-t-i-c-s -> s-c-i-t-s-i-t-a-t-s = scitsitats
+teststring: t-e-s-t-s-t-r-i-n-g -> g-n-i-r-t-s-t-s-e-t = gnirtstset
 
 Example with 10 letters ending in "status":
 teststatus: t-e-s-t-s-t-a-t-u-s -> s-u-t-a-t-s-t-s-e-t = sutatstset
 
-The input is ONE complete word. Reverse ALL letters from position 10 to position 1. Output only the reversed word.
+The input is ONE complete word. 
+Reverse ALL letters from position 10 to position 1. 
+Output only the reversed word.
 ```
 
 ## 迭代历史
