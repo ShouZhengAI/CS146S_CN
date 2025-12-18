@@ -54,3 +54,8 @@ ollama run llama3.1:8b
 
 ## 评分标准 (总计 60 分)
 - 针对 6 种不同提示词技术中每个完成的提示词，各得 10 分。
+
+
+🙏 Acknowledgement
+
+[sweetkruts/cs146s](https://github.com/sweetkruts/cs146s)
