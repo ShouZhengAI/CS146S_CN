@@ -52,7 +52,17 @@
 * [国产编程平台](#国产编程平台)
 * [FAQ 常见问题](#常见问题)
 * [相关资源-vibe coding项目](#相关项目资源)
-
+---
+- [x] week1 Assignments
+- [ ] week2 Assignments
+- [ ] week3 Assignments
+- [ ] week4 Assignments
+- [ ] week5 Assignments
+- [ ] week6 Assignments
+- [ ] week7 Assignments
+- [ ] week8 Assignments  
+- [ ] week9 Assignments
+- [ ] week0 Assignments
 ---
 ## 教学大纲
 
