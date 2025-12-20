@@ -8,7 +8,7 @@
 
 **欢迎加入 动手学CS146S 交流群一起讨论**:
 <div align="center">
-  <img src="group.png" width="20%" height="auto">
+  <img src="new_group.png" width="20%" height="auto">
 </div>
 
 > 本项目长期维护，希望能帮到各位入门 vibe coding 的朋友，欢迎Star，分享与提PR🌟~  
