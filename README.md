@@ -365,6 +365,7 @@
 | datawhalechina/vibe-vibe | 首个系统化 Vibe Coding 开源教程，从零基础到全栈实战，让人人都能用 AI 开发产品。在线阅读地址：www.vibevibe.cn | [link](https://github.com/datawhalechina/vibe-vibe) |
 | tukuaiai/vibe-coding-cn | Vibe Coding 的中文翻译版本 + 个人开发经验 + 提示词库，构建成一个综合的 vibecoding 工作站，包含工作流程、工具配置和最佳实践 | [link](https://github.com/tukuaiai/vibe-coding-cn) |
 | EnzeD/vibe-coding | 《Ultimate Guide to Vibe Coding V1.2》，系统化的 AI 驱动开发指南，强调结构化规划、记忆库管理和迭代测试，避免 AI 失控，实现高效模块化的 Vibe Coding，适用于游戏和应用开发 | [link](https://github.com/EnzeD/vibe-coding) |
+| Doloffer Guide优惠价GPT  claude会员充值 | 正版订阅 售后无忧，https://doloffer.com 9折优惠码：AI8888 https://github.com/Doloffer-g/guide/blob/main/README.md | [link](https://doloffer.com) |
 
 ## 🙏 Acknowledgement
 * [Awesome Vibe Coding](https://github.com/filipecalegario/awesome-vibe-coding) ：一个精选的vibe coding参考列表，专注于通过AI协作编写代码，包括工具、概念和提示工程指南。
