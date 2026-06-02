@@ -3,7 +3,7 @@
 </div>
 
 <h1 align="center">📚CS146S中文版课程 Vibe Coding Together</h1>
-
+🌟 付费赞助广告位：联系邮箱szwang.scholar@gmail.com，在文档内展示您的品牌和产品。
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=https://github.com/ShouZhengAI/CS146S_CN&label=Total%20Visitors&labelColor=%232ccce4&countColor=%23d9e3f0)
 
 **欢迎加入 动手学CS146S 交流群一起讨论**:
