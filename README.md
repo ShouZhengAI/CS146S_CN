@@ -377,5 +377,8 @@
 
 本项目采用 MIT 许可证 - 详情请见 `LICENSE` 文件。
 ## Star History
+<div align="center">
+  <img src="star-history-2026717.png" width="100%" height="auto">
+</div>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ShouZhengAI/CS146S_CN&type=Timeline)](https://star-history.com/#ShouZhengAI/CS146S_CN&Timeline)
+[实时数据](https://www.star-history.com/?type=timeline&repos=ShouZhengAI%2FCS146S_CN)
