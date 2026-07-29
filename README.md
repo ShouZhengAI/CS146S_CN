@@ -3,17 +3,26 @@
 </div>
 
 <h1 align="center">📚CS146S中文版课程 Vibe Coding Together</h1>
-🌟 付费赞助广告位：联系邮箱szwang.scholar@gmail.com，在文档内展示您的品牌和产品。
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=https://github.com/ShouZhengAI/CS146S_CN&label=Total%20Visitors&labelColor=%232ccce4&countColor=%23d9e3f0)
 
 **欢迎加入 动手学CS146S 交流群一起讨论**:
 <div align="center">
-  <img src="group7-17.png" width="20%" height="auto">
+  <img src="group7-29.png" width="20%" height="auto">
 </div>
 
 > 本项目长期维护，希望能帮到各位入门 vibe coding 的朋友，欢迎Star，分享与提PR🌟~  
-> 正在积极维护高质量 Assignments 中，每周天发布哦~
+> 正在积极维护高质量 Assignments 中，每周天发布哦~  
+> 群内不定期分享由赞助商提供的大模型额度，欢迎进群
+
+🌟 付费赞助广告位：联系邮箱szwang.scholar@gmail.com，在文档内展示您的品牌和产品。
+<div align="center">
+  <img src="ATLAS CLOUD LOGO_BLACK.png" width="40%" height="auto">
+</div>
+
+- **Sponsored by Atlas Cloud**
+  - Atlas Cloud is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities.
+  - Check out Atlas Cloud's new coding plan promotion for more budget-friendly API access：https://www.atlascloud.ai/console/coding-plan
 
 
 
