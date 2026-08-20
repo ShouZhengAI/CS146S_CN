@@ -16,13 +16,20 @@
 > 群内不定期分享由赞助商提供的大模型额度，欢迎进群
 
 🌟 付费赞助广告位：联系邮箱szwang.scholar@gmail.com，在文档内展示您的品牌和产品。
-<div align="center">
-  <img src="ATLAS CLOUD LOGO_BLACK.png" width="40%" height="auto">
-</div>
 
-- **Sponsored by Atlas Cloud**
-  - Atlas Cloud is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities.[link](https://www.atlascloud.ai/zh?utm_source=github&utm_medium=link&utm_campaign=CS146S_CN)
-  - Check out Atlas Cloud's new coding plan promotion for more budget-friendly API access：https://www.atlascloud.ai/console/coding-plan
+---
+<table>
+<tr>
+<td width="180"><img src="ATLAS CLOUD LOGO_BLACK.png" alt="Atlas Cloud" width="150"></a></td>
+<td><a href="https://www.atlascloud.ai/zh?utm_source=github&utm_medium=link&utm_campaign=CS146S_CN">Atlas Cloud</a> is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities..
+
+Check out Atlas Cloud's new coding plan promotion for more budget-friendly API access：<a href="https://www.atlascloud.ai/console/coding-plan">coding-plan</a>
+</td>
+</tr>
+</tr>
+
+</table>
+
 
 
 
@@ -322,13 +329,13 @@
 ## 国产编程平台
 
 
-| 国产编程模型                | 定位                          | 个人最低订阅价                                                                                                                          | CLI & IDE                                                                                                                                                | 其他                                                          |
-| --------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **GLM-4.6 Coding**    | 智谱「通用+编程」双模长上下文             | [20 元/月（Coding Plan）](https://docs.bigmodel.cn/cn/guide/models/text/glm-4.6)<br>季付 54 元≈18 元/月                                   | – [GLM-CLI（官方）](https://github.com/xqsit94/glm)<br>– Claude Code / Roo Code / Cline 等 10+ 第三方已适配                                                         | [iFlow（开源流程编排）](https://github.com/OSCC-Project/iFlow)      |
-| **Kimi K2 Thinking**  | 月之暗面「推理+代码」长思考模型            | [49 元/月（K2 会员）](https://kimi-k2.org/zh/blog/15-kimi-k2-thinking-zh)<br>放量 199 元/月                                                | – Kimi-Code-CLI（内测）<br>– 继续用 Claude Code，自定义 base-url 切到 K2                                                                                              | [Qwencode（阿里开源轻量 CLI）](https://github.com/alibaba/qwencode) |
-| **Doubao-Seed-Code**  | 字节「Agentic 编程」专用模型，256k 上下文 | [Lite：首月 9.9 元，续费 40 元/月](https://www.volcengine.com/docs/82354/1639499)<br>Pro：首月 49.9 元，续费 200 元/月                             | – [veCLI（火山引擎）](https://www.volcengine.com/docs/82354/1639499)<br>– [Trae（字节官方 AI IDE）](https://www.trae.ai/)<br>– 兼容 Anthropic API，Claude Code 一行配置即可切换 | [CodeBuddy（腾讯开源）](https://github.com/Tencent/CodeBuddy)     |
-| **DeepSeek-Coder**    | 深度求索开源系列，可本地部署              | 模型开源免费<br>[API 按量：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens](https://platform.deepseek.com/)                                         | – [DeepSeek-Coder-CLI（官方）](https://coder.deepseek.com/)<br>– continue.dev / OpenCoder 插件                                                                 | 同上                                                          |
-| **Qwen3-Coder-Flash** | 阿里通义「甜品级」开源编程模型             | 模型开源免费<br>[API 按量：输入≈0.8 元 / 百万 tokens，输出≈1.5 元 / 百万 tokens](https://www.modelscope.cn/models/Qwen/Qwen3-Coder-30B-A3B-Instruct) | – [Qwen-Code-CLI（官方）](https://github.com/QwenLM/Qwen-Code-CLI)<br>– [Qoder（阿里 AI IDE）](https://qoder.aliyun.com/)<br>– Claude Code + 自定义 endpoint        | 同上                                                          |
+| 国产编程模型          | 定位                                      | 个人最低订阅价                                                                                                                                       | CLI & IDE                                                                                                                                                                       | 其他                                                                |
+| --------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **GLM-4.6 Coding**    | 智谱「通用+编程」双模长上下文             | [20 元/月（Coding Plan）](https://docs.bigmodel.cn/cn/guide/models/text/glm-4.6)<br>季付 54 元≈18 元/月                                              | – [GLM-CLI（官方）](https://github.com/xqsit94/glm)<br>– Claude Code / Roo Code / Cline 等 10+ 第三方已适配                                                                     | [iFlow（开源流程编排）](https://github.com/OSCC-Project/iFlow)      |
+| **Kimi K2 Thinking**  | 月之暗面「推理+代码」长思考模型           | [49 元/月（K2 会员）](https://kimi-k2.org/zh/blog/15-kimi-k2-thinking-zh)<br>放量 199 元/月                                                          | – Kimi-Code-CLI（内测）<br>– 继续用 Claude Code，自定义 base-url 切到 K2                                                                                                        | [Qwencode（阿里开源轻量 CLI）](https://github.com/alibaba/qwencode) |
+| **Doubao-Seed-Code**  | 字节「Agentic 编程」专用模型，256k 上下文 | [Lite：首月 9.9 元，续费 40 元/月](https://www.volcengine.com/docs/82354/1639499)<br>Pro：首月 49.9 元，续费 200 元/月                               | – [veCLI（火山引擎）](https://www.volcengine.com/docs/82354/1639499)<br>– [Trae（字节官方 AI IDE）](https://www.trae.ai/)<br>– 兼容 Anthropic API，Claude Code 一行配置即可切换 | [CodeBuddy（腾讯开源）](https://github.com/Tencent/CodeBuddy)       |
+| **DeepSeek-Coder**    | 深度求索开源系列，可本地部署              | 模型开源免费<br>[API 按量：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens](https://platform.deepseek.com/)                                         | – [DeepSeek-Coder-CLI（官方）](https://coder.deepseek.com/)<br>– continue.dev / OpenCoder 插件                                                                                  | 同上                                                                |
+| **Qwen3-Coder-Flash** | 阿里通义「甜品级」开源编程模型            | 模型开源免费<br>[API 按量：输入≈0.8 元 / 百万 tokens，输出≈1.5 元 / 百万 tokens](https://www.modelscope.cn/models/Qwen/Qwen3-Coder-30B-A3B-Instruct) | – [Qwen-Code-CLI（官方）](https://github.com/QwenLM/Qwen-Code-CLI)<br>– [Qoder（阿里 AI IDE）](https://qoder.aliyun.com/)<br>– Claude Code + 自定义 endpoint                    | 同上                                                                |
 
 
 ## 常见问题
@@ -370,12 +377,12 @@
 
 # 相关项目资源
 
-| 名称 | 简要 | 链接 |
-|----------|----------|------|
-| datawhalechina/vibe-vibe | 首个系统化 Vibe Coding 开源教程，从零基础到全栈实战，让人人都能用 AI 开发产品。在线阅读地址：www.vibevibe.cn | [link](https://github.com/datawhalechina/vibe-vibe) |
-| tukuaiai/vibe-coding-cn | Vibe Coding 的中文翻译版本 + 个人开发经验 + 提示词库，构建成一个综合的 vibecoding 工作站，包含工作流程、工具配置和最佳实践 | [link](https://github.com/tukuaiai/vibe-coding-cn) |
-| EnzeD/vibe-coding | 《Ultimate Guide to Vibe Coding V1.2》，系统化的 AI 驱动开发指南，强调结构化规划、记忆库管理和迭代测试，避免 AI 失控，实现高效模块化的 Vibe Coding，适用于游戏和应用开发 | [link](https://github.com/EnzeD/vibe-coding) |
-| Doloffer Guide优惠价GPT  claude会员充值 | 正版订阅 售后无忧，https://doloffer.com 9折优惠码：AI8888 https://github.com/Doloffer-g/guide/blob/main/README.md | [link](https://doloffer.com) |
+| 名称                                    | 简要                                                                                                                                                                     | 链接                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| datawhalechina/vibe-vibe                | 首个系统化 Vibe Coding 开源教程，从零基础到全栈实战，让人人都能用 AI 开发产品。在线阅读地址：www.vibevibe.cn                                                             | [link](https://github.com/datawhalechina/vibe-vibe) |
+| tukuaiai/vibe-coding-cn                 | Vibe Coding 的中文翻译版本 + 个人开发经验 + 提示词库，构建成一个综合的 vibecoding 工作站，包含工作流程、工具配置和最佳实践                                               | [link](https://github.com/tukuaiai/vibe-coding-cn)  |
+| EnzeD/vibe-coding                       | 《Ultimate Guide to Vibe Coding V1.2》，系统化的 AI 驱动开发指南，强调结构化规划、记忆库管理和迭代测试，避免 AI 失控，实现高效模块化的 Vibe Coding，适用于游戏和应用开发 | [link](https://github.com/EnzeD/vibe-coding)        |
+| Doloffer Guide优惠价GPT  claude会员充值 | 正版订阅 售后无忧，https://doloffer.com 9折优惠码：AI8888 https://github.com/Doloffer-g/guide/blob/main/README.md                                                        | [link](https://doloffer.com)                        |
 
 ## 🙏 Acknowledgement
 * [Awesome Vibe Coding](https://github.com/filipecalegario/awesome-vibe-coding) ：一个精选的vibe coding参考列表，专注于通过AI协作编写代码，包括工具、概念和提示工程指南。
