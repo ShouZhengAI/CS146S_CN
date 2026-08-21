@@ -1,14 +1,14 @@
 <div align="center">
-  <img src="teaser.png" width="100%" height="auto">
+  <img src="Resource/imgs/teaser.png" width="100%" height="auto">
 </div>
 
 <h1 align="center">📚CS146S中文版课程 Vibe Coding Together</h1>
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=https://github.com/ShouZhengAI/CS146S_CN&label=Total%20Visitors&labelColor=%232ccce4&countColor=%23d9e3f0)
 
-**欢迎加入 动手学CS146S 交流群一起讨论**:
+**欢迎加入 动手学CS146S 交流群一起讨论，若群二维码过期请添加个人微信**:
 <div align="center">
-  <img src="group7-29.png" width="20%" height="auto">
+  <img src="Resource/imgs/group8-21.png" width="20%" height="auto">,<img src="Resource/imgs/personinfo.png" width="20%" height="auto">
 </div>
 
 > 本项目长期维护，希望能帮到各位入门 vibe coding 的朋友，欢迎Star，分享与提PR🌟~  
@@ -20,7 +20,7 @@
 ---
 <table>
 <tr>
-<td width="180"><img src="ATLAS CLOUD LOGO_BLACK.png" alt="Atlas Cloud" width="150"></a></td>
+<td width="180"><img src="Resource/imgs/ATLAS CLOUD LOGO_BLACK.png" alt="Atlas Cloud" width="150"></a></td>
 <td><a href="https://www.atlascloud.ai/zh?utm_source=github&utm_medium=link&utm_campaign=CS146S_CN">Atlas Cloud</a> is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities..
 
 Check out Atlas Cloud's new coding plan promotion for more budget-friendly API access：<a href="https://www.atlascloud.ai/console/coding-plan">coding-plan</a>
@@ -29,9 +29,9 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 </tr>
 
 <tr>
-<td width="180"><img src="apimart.png" alt="Atlas Cloud" width="150"></a></td>
+<td width="180"><img src="Resource/imgs/apimart.png" alt="Atlas Cloud" width="150"></a></td>
 <td>
-感谢 APIMart 赞助了本项目！APIMart 是专注 AI 图片/视频生成的低价 API 平台，GPT-Image-2 低至 $0.006/张，1 美元可出图 160+ 张。图片、视频一套异步 API 通吃，提交任务拿 ID、回调取结果，跑批万张不超时、换模型不改代码。按量付费、无月费，通过此<a href="https://go.apimart.ai/gh-cs146s_cn">注册链接</a> 注册即可开用。
+感谢 APIMart 赞助了本项目！APIMart 是专注 AI 图片/视频生成的低价 API 平台，GPT-Image-2 低至 $0.006/张，1 美元可出图 160+ 张。图片、视频一套异步 API 通吃，提交任务拿 ID、回调取结果，跑批万张不超时、换模型不改代码。按量付费、无月费，通过此<a href="https://go.apimart.ai/gh-cs146s_cn">注册链接</a>注册即可开用。
 
 </td>
 </tr>
@@ -403,7 +403,7 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 本项目采用 MIT 许可证 - 详情请见 `LICENSE` 文件。
 ## Star History
 <div align="center">
-  <img src="star-history-2026717.png" width="100%" height="auto">
+  <img src="Resource/imgs/star-history-2026717.png" width="100%" height="auto">
 </div>
 
 [实时数据](https://www.star-history.com/?type=timeline&repos=ShouZhengAI%2FCS146S_CN)
