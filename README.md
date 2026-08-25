@@ -44,11 +44,11 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 
 ## 课程简介
 
-近几年来，大型语言模型（LLM）为软件开发带来了革命性的新范式。传统的软件开发生命周期正在被人工智能的自动化能力渗透和重塑，这引发了一个关键问题：下一代软件工程师应如何利用这些进步，将工作效率提升十倍（10x），并为未来的职业生涯做好准备？
+大语言模型（LLM）正在把软件开发从以人工编写代码为主的过程，转变为开发者与能力日益增强的 Coding Agent 协作的过程。这一变化要求我们用新的方式定义意图、组织工作，并协调工具，让 Agent 能够有效参与复杂的软件项目。
 
-本课程将证明，现代人工智能工具不仅能大幅提高开发人员的生产力，还能让更广泛的受众更容易接触和从事软件工程工作。我们将展示，软件开发已经从“从零开始”（0-1）的代码编写，演变为一个迭代工作流程：规划、利用AI生成、修改，然后重复。学生将深入掌握传统软件工程挑战背后的理论，以及当前解决这些问题的尖端AI驱动工具。
+课程将探讨 AI 原生软件开发背后的新兴实践与技术，包括 MCP、Agent Skills、spec-driven development、loop engineering 和 software factory。你将学习如何为 Agent 提供合适的上下文与能力，把产品需求转换为可执行的规格，并设计由人类与 Agent 共同规划、构建、评估和迭代改进的工作流。
 
-通过动手实践的工程任务，以及来自行业先驱（这些革命性工具的开发者）的讲座，你将获得以下方面的实战经验：AI辅助开发、自动化测试、智能文档生成和安全漏洞检测。学完本课程后，你将对如何将最先进的LLM模型整合到复杂的开发工作流程中并避免常见陷阱有一个清晰而透彻的理解。
+通过动手作业、项目和来自下一代开发工具实践者的分享，学生将了解当前 Coding Agent 的能力与局限。课程结束时，学生将能够设计有效的 Agent 驱动工作流，将工具与 Skills 组合成可靠的开发系统，并运用 software factory 的原则，以更高的速度和规模构建、演进软件。
 
 
 **先决条件**：具备相当于 CS111 级别的编程经验。推荐具备 CS221/229 课程知识。
@@ -57,10 +57,7 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 
 **目标**：掌握现代开发工具、理解 AI 辅助编程、学习自动化测试和部署、探索新兴软件趋势。
 
-**评分**：期末项目 80%，每周作业 15%，课堂参与 5%
-
-**作业截止日期**：
-![calender](./Resource/imgs/PixPin_2025-12-16_17-10-42.png)
+**评分**：期末项目 50%，每周作业 15%，开源贡献 5%，课堂参与 5%
 
 * [教学大纲](#教学大纲)
     * [第 1 周：编码 LLM 和 AI 开发简介](#第-1-周编码-llm-和-ai-开发简介)
@@ -91,260 +88,40 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 - [ ] week0 Assignments
 ---
 ## 教学大纲
+### Fall 2026
+
+
+
+| 周次     | 主题与要点                                                                                                                                                                                                                             | 课程安排                                                                                                                                                             |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 第 1 周  | **Coding Agent 的内部原理**<br>• LLM 究竟是什么，以及 Agent loop 在底层如何运行<br>• 核心工具集（read、write、edit、bash）及任务如何在其中流转<br>• 生产级 Coding Agent 如何组织 system prompt 与工具定义                              | **9/22（周二）**：课程简介 + 用 200 行代码构建 Claude Code<br>**9/24（周四）**：前沿 Coding Agent 的设计方式：深入剖析定义 Agent 的 system prompt                    |
+| 第 2 周  | **高级 Context Engineering**<br>• 高级 prompting 技巧及其适用场景<br>• RePPIT（Research、Propose、Plan、Implement、Test）与 spec-driven development<br>• MCP 基础：server、client、tool 与 transport<br>• 为 Agent ergonomics 设计工具 | **9/29（周二）**：高级 prompting + Agentic 开发框架（RePPIT、spec-driven development）<br>**10/1（周四）**：MCP 与 tool calling 全面介绍（理论、配置与高级工具设计） |
+| 第 3 周  | **Agent Skills 与 CLI**<br>• Skills 是什么；SKILL.md + 脚本如何编码一个工作流<br>• Web Skills，以及如何把 Agent 能力扩展到 repo 之外<br>• 如何高效地通过 CLI 工作                                                                      | **10/6（周二）**：全面了解 Agent Skills（含 Web Skills）<br>**10/8（周四）**：嘉宾：Lee Robinson（Cursor）                                                           |
+| 第 4 周  | **定制你的 Agent 与仓库**<br>• CLAUDE.md 与 AGENTS.md：各自应该写什么<br>• 用 Hooks 配置 lint gate、测试运行与 guardrail<br>• Subagent 模式（planner / implementer / reviewer）                                                        | **10/13（周二）**：定制 Agentic 开发环境（CLAUDE.md、AGENTS.md、Hooks）<br>**10/15（周四）**：嘉宾：Boris Cherny（Anthropic），炉边问答                              |
+| 第 5 周  | **Agent 就绪的代码库**<br>• 什么让 repo 对 Agent 友好：结构、文档、测试与检查机制<br>• 就绪度评分与审计<br>• 真实 repo 中阻碍 Agent 工作的常见缺口                                                                                     | **10/20（周二）**：让 repo 对 Agent 就绪：使仓库更 Agent-friendly 的结构、文档与检查机制<br>**10/22（周四）**：嘉宾：Eno Reyes，分享 Agent readiness                 |
+| 第 6 周  | **Agentic Code Review**<br>• AI 代码审查擅长发现什么、又会遗漏什么<br>• 审查架构与自定义规则<br>• 将 AI 审查融入团队的 PR 工作流                                                                                                       | **10/27（周二）**：Agentic Code Review：最佳实践与架构<br>**10/29（周四）**：嘉宾：Silas Alberti（Cognition）                                                        |
+| 第 7 周  | **安全**<br>• SAST / SCA、依赖漏洞与 Secret 泄露漏洞<br>• Prompt Injection 与 Agent 特有攻击面<br>• Agent 辅助的漏洞分诊与修复                                                                                                         | **11/3（周二）**：AI 代码库中的安全<br>**11/5（周四）**：嘉宾：Isaac Evans（Semgrep）                                                                                |
+| 第 8 周  | **后台 Agent**<br>• 异步、云端委派的 Agent<br>• 管理并行 Agent 集群<br>• Issue-to-PR 流水线与触发器（Slack、Linear、GitHub）                                                                                                           | **11/10（周二）**：后台 Agent：异步启动任务<br>**11/12（周四）**：嘉宾（待公布）                                                                                     |
+| 第 9 周  | **构建 AI 原生团队**<br>• MCP 门户与集中化、权限化的工具访问<br>• LLM gateway、模型路由与成本优化<br>• 组织范围内的落地模式                                                                                                            | **11/17（周二）**：大型团队中的 Coding Agent（MCP 门户、LLM gateway、组织模式、成本优化与模型路由）<br>**11/19（周四）**：嘉宾（待公布）                             |
+| 第 10 周 | **Software Factory 与未来**<br>• 可自行运行、自我改进的软件系统<br>• 部署后运行与保护 Agent<br>• AI 软件工程的下一步                                                                                                                   | **12/1（周二）**：Software Factory：可自行运行、自我改进的软件系统<br>**12/3（周四）**：嘉宾（待公布）                                                               |
+
+
+### Fall 2025
+
+
+| 周次     | 主题与要点                                                                                                        | 阅读材料                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 作业                                                                                                                  | 课程安排                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 第 1 周  | **Coding LLM 与 AI 开发导论**<br>• 课程安排<br>• LLM 究竟是什么<br>• 如何有效 prompting                           | [深入理解 LLM](https://www.youtube.com/watch?v=7xTGNNLPyMI)<br>[Prompt Engineering 概览](https://cloud.google.com/discover/what-is-prompt-engineering)<br>[Prompt Engineering 指南](https://www.promptingguide.ai/techniques)<br>[AI Prompt Engineering：深入解析](https://www.youtube.com/watch?v=T9aRN5JkmL8)<br>[OpenAI 如何使用 Codex](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf)                                                                                                                                                                                                                                                                                                         | [LLM Prompting Playground](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week1)            | **9/22（周一）**：LLM 简介及其构建原理 — [Slides](https://docs.google.com/presentation/d/1zT2Ofy88cajLTLkd7TcuSM4BCELvF9qQdHmlz33i4t0/edit?usp=sharing)<br>**9/26（周五）**：LLM 的高效 prompting — [Slides](https://docs.google.com/presentation/d/1MIhw8p6TLGdbQ9TcxhXSs5BaPf5d_h77QY70RHNfeGs/edit?usp=drive_link)                                                                                                                                                                                                             |
+| 第 2 周  | **Coding Agent 的剖析**<br>• Agent 架构与组件<br>• 工具使用与 function calling<br>• MCP（Model Context Protocol） | [MCP 简介](https://stytch.com/blog/model-context-protocol-introduction/)<br>[MCP Server 示例实现](https://github.com/modelcontextprotocol/servers)<br>[MCP Server 身份验证](https://developers.cloudflare.com/agents/guides/remote-mcp-server/#add-authentication)<br>[MCP Server SDK](https://github.com/modelcontextprotocol/typescript-sdk/tree/main?tab=readme-ov-file#server)<br>[MCP Registry](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/)<br>[关于 MCP 的思考](https://www.reillywood.com/blog/apis-dont-make-good-mcp-tools/)                                                                                                                                                                        | [AI IDE 初探](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week2)                         | **9/29（周一）**：从零构建 Coding Agent — [Slides](https://docs.google.com/presentation/d/11CP26VhsjnZOmi9YFgLlonzdib9BLyAlgc4cEvC5Fps/edit?usp=sharing)；[已完成练习](https://drive.google.com/file/d/1YtpKFVG13DHyQ2i3HOtwyVJOV90nWeL2/view?usp=drive_link)<br>**10/3（周五）**：构建自定义 MCP Server — [Slides](https://docs.google.com/presentation/d/1zSC2ra77XOUrJeyS85houg1DU7z9hq5Y4ebagTch-5o/edit?usp=drive_link)；[已完成练习](https://drive.google.com/file/d/1J6lgZWcxPzpCpjujJSnW1aAkCYF6Yxv3/view?usp=drive_link) |
+| 第 3 周  | **AI IDE**<br>• 上下文管理与代码理解<br>• 面向 Agent 的 PRD<br>• IDE 集成与扩展                                   | [规格即新的源代码](https://blog.ravi-mehta.com/p/specs-are-the-new-source-code)<br>[长上下文如何失效](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html)<br>[Devin：Coding Agents 101](https://devin.ai/agents101#introduction)<br>[让 AI 在复杂代码库中工作](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md)<br>[FAANG 如何 Vibe Code](https://x.com/rohanpaul_ai/status/1959414096589422619)<br>[为 Agent 编写有效工具](https://www.anthropic.com/engineering/writing-tools-for-agents)                                                                                                                                                                     | [构建自定义 MCP Server](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week3/assignment.md) | **10/6（周一）**：从首次 prompt 到最佳 AI IDE 配置 — [Slides](https://docs.google.com/presentation/d/11pQNCde_mmRnImBat0Zymnp8TCS_cT_1up7zbcj6Sjg/edit?usp=sharing)；[设计文档模板](https://drive.google.com/file/d/1MZ0Qx68Vzw4x5x_XcV8XiPLp7fFDe1LJ/view?usp=drive_link)<br>**10/10（周五）**：Silas Alberti（Cognition 研究负责人）— [Slides](https://docs.google.com/presentation/d/1i0pRttHf72lgz8C-n7DSegcLBgncYZe_ppU7dB9zhUA/edit?usp=sharing)                                                                            |
+| 第 4 周  | **Coding Agent 模式**<br>• 管理 Agent 的自主性等级<br>• 人机协作模式                                              | [Anthropic 如何使用 Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)<br>[Claude 最佳实践](https://www.anthropic.com/engineering/claude-code-best-practices)<br>[Awesome Claude Agents](https://github.com/vijaythecoder/awesome-claude-agents)<br>[Super Claude](https://github.com/SuperClaude-Org/SuperClaude_Framework)<br>[好的上下文，好的代码](https://blog.stockapp.com/good-context-good-code/)<br>[窥探 Claude Code 的内部机制](https://medium.com/@outsightai/peeking-under-the-hood-of-claude-code-70f5a94a9a62)                                                                                                                                                                           | [使用 Claude Code 编程](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week4/assignment.md) | **10/13（周一）**：如何成为 Agent 管理者 — [Slides](https://docs.google.com/presentation/d/19mgkwAnJDc7JuJy0zhhoY0ZC15DiNpxL8kchPDnRkRQ/edit?usp=sharing)<br>**10/17（周五）**：Boris Cherny（Claude Code 创建者）— [Slides](https://docs.google.com/presentation/d/1bv7Zozn6z45CAh-IyX99dMPMyXCHC7zj95UfwErBYQ8/edit?usp=sharing)                                                                                                                                                                                                |
+| 第 5 周  | **现代终端**<br>• AI 增强的命令行界面<br>• 终端自动化与脚本编写                                                   | [Warp University](https://www.warp.dev/university?slug=university)<br>[Warp 与 Claude Code 对比](https://www.warp.dev/university/getting-started/warp-vs-claude-code)<br>[Warp 如何用 Warp 构建 Warp](https://notion.warp.dev/How-Warp-uses-Warp-to-build-Warp-21643263616d81a6b9e3e63fd8a7380c)                                                                                                                                                                                                                                                                                                                                                                                                                                              | [使用 Warp 进行 Agentic 开发](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week5)         | **10/20（周一）**：如何打造一款爆款 AI 开发者产品 — [Slides](https://docs.google.com/presentation/d/1Djd4eBLBbRkma8rFnJAWMT0ptct_UGB8hipmoqFVkxQ/edit?usp=sharing)<br>**10/24（周五）**：Zach Lloyd（Warp CEO）— [Slides](https://www.figma.com/slides/kwbcmtqTFQMfUhiMH8BiEx/Warp---Stanford--Copy-?node-id=9-116&t=oBWBCk8mjg2l2NR5-1)                                                                                                                                                                                          |
+| 第 6 周  | **AI 测试与安全**<br>• 安全地 Vibe Coding<br>• 漏洞检测的历史<br>• AI 生成的测试套件                              | [SAST 与 DAST](https://www.splunk.com/en_us/blog/learn/sast-vs-dast.html)<br>[通过 Prompt Injection 实现 Copilot RCE](https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/)<br>[使用 Claude Code 与 OpenAI Codex 发现漏洞](https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/)<br>[Agentic AI 威胁：身份欺骗与冒充](https://unit42.paloaltonetworks.com/agentic-ai-threats/)<br>[OWASP Top Ten](https://owasp.org/www-project-top-ten/)<br>[Context Rot](https://research.trychroma.com/context-rot)<br>[使用 O3 进行漏洞 prompt 分析](https://github.com/SeanHeelan/o3_finds_cve-2025-37899/blob/master/system_prompt_uafs.prompt) | [编写安全的 AI 代码](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week6/assignment.md)    | **10/27（周一）**：AI QA、SAST、DAST 及未来 — [Slides](https://docs.google.com/presentation/d/1C05bCLasMDigBbkwdWbiz4WrXibzi6ua4hQQbTod_8c/edit?usp=sharing)<br>**10/31（周五）**：Isaac Evans（Semgrep CEO）                                                                                                                                                                                                                                                                                                                     |
+| 第 7 周  | **现代软件支持**<br>• 哪些 AI 代码系统值得信任<br>• 调试与诊断<br>• 智能文档生成                                  | [Code Review：做就对了](https://blog.codinghorror.com/code-reviews-just-do-it/)<br>[如何有效进行 Code Review](https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/)<br>[现代 Code Review 中 AI 辅助 Coding 实践评估](https://arxiv.org/pdf/2405.13565)<br>[AI Code Review 落地最佳实践](https://graphite.dev/guides/ai-code-review-implementation-best-practices)<br>[软件团队的 Code Review 要点](https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html)<br>[来自数百万次 AI Code Review 的经验](https://www.youtube.com/watch?v=TswQeKftnaw)                                                                                                           | [Code Review 实践](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week7)                    | **11/3（周一）**：AI Code Review — [Slides](https://docs.google.com/presentation/d/1NkPzpuSQt6Esbnr2-EnxM9007TL6ebSPFwITyVY-QxU/edit?usp=sharing)<br>**11/7（周五）**：Tomas Reimers（Graphite CPO）— [Slides](https://drive.google.com/file/d/1hwF-RIkOJ_OFy17BKhzFyCtxSS7Pcf7p/view?usp=drive_link)                                                                                                                                                                                                                             |
+| 第 8 周  | **自动化 UI 与应用构建**<br>• 面向所有人的设计与前端开发<br>• 快速 UI/UX 原型与迭代                               | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [多技术栈 Web 应用构建](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8)               | **11/10（周一）**：通过一个 prompt 构建端到端应用 — [Slides](https://docs.google.com/presentation/d/1GrVLsfMFIXMiGjIW9D7EJIyLYh_-3ReHHNd_vRfZUoo/edit?usp=sharing)<br>**11/14（周五）**：Gaspar Garcia（Vercel AI 研究负责人）— [Slides](https://docs.google.com/presentation/d/1Jf2aN5zIChd5tT86rZWWqY-iDWbxgR-uynKJxBR7E9E/edit?usp=sharing)                                                                                                                                                                                    |
+| 第 9 周  | **部署后的 Agent**<br>• AI 系统的监控与可观测性<br>• 自动化事件响应<br>• 分诊与调试                               | [SRE 导论](https://sre.google/sre-book/introduction/)<br>[需要了解的可观测性基础](https://last9.io/blog/traces-spans-observability-basics/)<br>[使用 AI 排查 Kubernetes 故障](https://resolve.ai/blog/kubernetes-troubleshooting-in-resolve-ai)<br>[你的新 Autonomous Teammate](https://resolve.ai/blog/product-deep-dive)<br>[多 Agent 系统如何使工程师 AI-native](https://resolve.ai/blog/role-of-multi-agent-systems-AI-native-engineering)<br>[Agentic AI 在 On-call 工程中的益处](https://resolve.ai/blog/Top-5-Benefits)                                                                                                                                                                                                                | —                                                                                                                     | **11/17（周一）**：事件响应与 DevOps — [Slides](https://docs.google.com/presentation/d/1Mfe-auWAsg9URCujneKnHr0AbO8O-_U4QXBVOlO4qp0/edit?usp=sharing)<br>**11/21（周五）**：Mayank Agarwal（Resolve CTO）与 Milind Ganjoo（Resolve 技术成员）— [Slides](https://drive.google.com/file/d/11WnEbMGc9kny_WBpMN10I8oP8XsiQOnM/view?usp=sharing)                                                                                                                                                                                       |
+| 第 10 周 | **AI 软件工程的下一步**<br>• 软件开发角色的未来<br>• 新兴 AI Coding 范式<br>• 行业趋势与预测                      | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | —                                                                                                                     | **12/1（周一）**：十年后的软件开发<br>**12/5（周五）**：Martin Casado（a16z 普通合伙人）                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-### 第 1 周：编码 LLM 和 AI 开发简介
-
-**主题**
-
-  - 课程安排
-  - LLM 到底是什么
-  - 如何有效进行 Prompt
-
-**阅读材料**
-
-  - [深入探究 LLM: Deep Dive into LLMs](https://www.youtube.com/watch?v=7xTGNNLPyMI)
-    - [b站中文版](https://www.bilibili.com/video/BV16cNEeXEer)
-  - [提示工程概述: Prompt Engineering Overview](https://cloud.google.com/discover/what-is-prompt-engineering)
-    - [提示词工程概述中文版](https://www.yuque.com/wangjiandong/gwcyhv/uw3b7we9pmdubdig)
-  - [提示工程指南: Prompt Engineering Guide](https://www.promptingguide.ai/techniques)
-    - [提示词工程指南中文版](https://www.yuque.com/wangjiandong/gwcyhv/ziny243nwrodmew3)
-  - [AI 提示工程：深度探究: AI Prompt Engineering: A Deep Dive](https://www.youtube.com/watch?v=T9aRN5JkmL8)
-    - [b站中文版](https://www.bilibili.com/video/BV18ukBYzEQG)
-  - [OpenAI 如何使用 Codex: How OpenAI Uses Codex](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf)
-
-**课后作业**
-
-  - [LLM 提示词实践平台: LLM Prompting Playground](./Assignments/week1/README.md)
-
-**9 月 22 日（周一）：** 简介及 LLM 原理 - [Slides](./Resource/pdfs/1_1%20Introduction%20and%20how%20an%20LLM%20is%20made.pdf) [中文PPT](./Resource/pdfs/1_1%20Introduction%20and%20how%20an%20LLM%20is%20made_CN.pdf)
-
-**9 月 26 日（周五）：** LLM 的高效提示 - [Slides](./Resource/pdfs/1_2%20Power%20prompting%20for%20LLMs.pdf) [中文PPT](./Resource/pdfs/1_2%20Power%20prompting%20for%20LLMs_CN.pdf)
-
-### 第 2 周：编码智能体剖析
-
-**主题**
-
-  - 智能体架构和组件
-  - 工具使用和函数调用
-  - MCP (模型上下文协议)
-
-**阅读材料**
-
-  - [MCP 简介: MCP Introduction](https://stytch.com/blog/model-context-protocol-introduction/)
-  - [MCP 服务器实现示例: Sample MCP Server Implementations](https://github.com/modelcontextprotocol/servers)
-  - [MCP 服务器认证: MCP Server Authentication](https://developers.cloudflare.com/agents/guides/remote-mcp-server/#add-authentication)
-  - [MCP 服务器 SDK: MCP Server SDK](https://github.com/modelcontextprotocol/typescript-sdk/tree/main?tab=readme-ov-file#server)
-  - [MCP 注册中心: MCP Registry](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/)
-  - [关于 MCP 的思考: MCP Food-for-Thought](https://www.reillywood.com/blog/apis-dont-make-good-mcp-tools/)
-
-**课后作业**
-
-  - [AI IDE 初探: First Steps in the AI IDE](./Assignments/week2/assignment.md)
-
-**9 月 29 日（周一）：** 从零开始构建一个编码智能体 - [Slides](./Resource/pdfs/2_1%20Building%20a%20coding%20agent%20from%20scratch.pdf), [已完成的练习: Completed Exercise](./Resource/completed/coding_agent_from_scratch_lecture.py)
-
-**10 月 3 日（周五）：** 构建一个自定义 MCP 服务器 - [Slides](./Resource/pdfs/2_2%20Building%20a%20coding%20agent%20from%20scratch.pdf), [已完成的练习: Completed Exercise](./Resource/completed/simple_mcp.py)
-
-### 第 3 周：AI 集成开发环境（IDE）
-
-**主题**
-
-  - 上下文管理和代码理解
-  - 智能体的产品需求文档（PRD）
-  - IDE 集成和扩展
-
-**阅读材料**
-
-  - [规范即新的源代码: Specs Are the New Source Code](https://blog.ravi-mehta.com/p/specs-are-the-new-source-code)
-  - [长上下文如何失效及修复方法: How Long Contexts Fail](https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html)
-  - [Devin：编码智能体 101: Devin: Coding Agents 101](https://devin.ai/agents101#introduction)
-  - [让 AI 在复杂代码库中工作: Getting AI to Work In Complex Codebases](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md)
-  - [FAANG 是如何进行 Vibe Coding 的: How FAANG Vibe Codes](https://x.com/rohanpaul_ai/status/1959414096589422619)
-  - [为智能体编写高效工具: Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents)
-
-**课后作业**
-
-  - [构建一个自定义 MCP 服务器: Build a Custom MCP Server](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week3/assignment.md)
-
-**10 月 6 日（周一）：** 从首次提示到最佳 IDE 设置 - [Slides](./Resource/pdfs/3_1%20Building%20a%20coding%20agent%20from%20scratch.pdf), [设计文档模板: Design Doc Template](./Resource/completed/design_doc_template.md)
-
-**10 月 10 日（周五）：** [Silas Alberti](https://www.linkedin.com/in/silasalberti/) ([Cognition](https://cognition.ai/) 研究负责人) - [Slides](./Resource/pdfs/3_2%20Silas%20Alberti,%20Head%20of%20Research.pdf)
-
-### 第 4 周：编码智能体模式
-
-**主题**
-
-  - 管理智能体自治级别
-  - 人与智能体协作模式
-
-**阅读材料**
-
-  - [Anthropic 如何使用 Claude Code: How Anthropic Uses Claude Code](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf)
-  - [Claude 最佳实践: Claude Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
-  - [精选 Claude 智能体: Awesome Claude Agents](https://github.com/vijaythecoder/awesome-claude-agents)
-  - [Super Claude](https://github.com/SuperClaude-Org/SuperClaude_Framework): Super Claude
-  - [好的上下文，好的代码: Good Context Good Code](https://blog.stockapp.com/good-context-good-code/)
-  - [窥探 Claude Code 的内部机制: Peeking Under the Hood of Claude Code](https://medium.com/@outsightai/peeking-under-the-hood-of-claude-code-70f5a94a9a62)
-
-**课后作业**
-
-  - [使用 Claude Code 编码: Coding with Claude Code](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week4/assignment.md)
-
-**10 月 13 日（周一）：** 如何成为一名智能体管理者 - [Slides](https://docs.google.com/presentation/d/19mgkwAnJDc7JuJy0zhhoY0ZC15DiNpxL8kchPDnRkRQ/edit?usp=sharing)
-
-**10 月 17 日（周五）：** [Boris Cherney](https://www.linkedin.com/in/bcherny/) ([Claude Code](https://www.anthropic.com/claude-code) 创建者) - [Slides](https://docs.google.com/presentation/d/1bv7Zozn6z45CAh-IyX99dMPMyXCHC7zj95UfwErBYQ8/edit?usp=sharing)
-
-### 第 5 周：现代终端
-
-**主题**
-
-  - AI 增强的命令行界面
-  - 终端自动化和脚本编写
-
-**阅读材料**
-
-  - [Warp 大学: Warp University](https://www.warp.dev/university?slug=university)
-  - [Warp 对比 Claude Code: Warp vs Claude Code](https://www.warp.dev/university/getting-started/warp-vs-claude-code)
-  - [Warp 如何使用 Warp 来构建 Warp: How Warp Uses Warp to Build Warp](https://notion.warp.dev/How-Warp-uses-Warp-to-build-Warp-21643263616d81a6b9e3e63fd8a7380c)
-
-**课后作业**
-
-  - [使用 Warp 进行智能体开发: Agentic Development with Warp](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week5)
-
-**10 月 20 日（周一）：** 如何打造一款爆款 AI 开发者产品 - [Slides](https://docs.google.com/presentation/d/1Djd4eBLBbRkma8rFnJAWMT0ptct_UGB8hipmoqFVkxQ/edit?usp=sharing)
-
-**10 月 24 日（周五）：** [Zach Lloyd](https://www.linkedin.com/in/zachlloyd/) ([Warp](https://www.warp.dev/) 首席执行官) - [Slides](https://www.figma.com/slides/kwbcmtqTFQMfUhiMH8BiEx/Warp---Stanford--Copy-?node-id=9-116&t=oBWBCk8mjg2l2NR5-1)
-
-### 第 6 周：AI 测试与安全
-
-**主题**
-
-  - 安全的 Vibe coding
-  - 漏洞检测的历史
-  - AI 生成的测试套件
-
-**阅读材料**
-
-  - [SAST 对比 DAST: SAST vs DAST](https://www.splunk.com/en_us/blog/learn/sast-vs-dast.html)
-  - [通过提示注入实现 Copilot 远程代码执行: Copilot Remote Code Execution via Prompt Injection](https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/)
-  - [使用 Claude Code 和 OpenAI Codex 发现现代 Web 应用程序中的漏洞: Finding Vulnerabilities in Modern Web Apps Using Claude Code and OpenAI Codex](https://semgrep.dev/blog/2025/finding-vulnerabilities-in-modern-web-apps-using-claude-code-and-openai-codex/)
-  - [智能体 AI 威胁：身份欺骗和冒充风险: Agentic AI Threats: Identity Spoofing and Impersonation Risks](https://www.google.com/search?q=https://unit42.paloaltonetworks.com/agentic-ai-threats/%23:~:text%3DIdentity%2520spoofing%2520and%2520impersonation:%2520Attackers,accurate%2520information%2520exchange%2520are%2520critical.)
-  - [OWASP Top Ten：主要的 Web 应用程序安全风险: OWASP Top Ten: The Leading Web Application Security Risks](https://owasp.org/www-project-top-ten/)
-  - [上下文腐烂：理解 AI 上下文窗口的退化: Context Rot: Understanding Degradation in AI Context Windows](https://research.trychroma.com/context-rot)
-  - [使用 O3 进行漏洞提示分析: Vulnerability Prompt Analysis with O3](https://github.com/SeanHeelan/o3_finds_cve-2025-37899/blob/master/system_prompt_uafs.prompt)
-
-**课后作业**
-
-  - [编写安全的 AI 代码: Writing Secure AI Code](https://github.com/mihail911/modern-software-dev-assignments/blob/master/week6/assignment.md)
-
-**10 月 27 日（周一）：** AI QA、SAST、DAST 及未来 - [Slides](https://docs.google.com/presentation/d/1C05bCLasMDigBbkwdWbiz4WrXibzi6ua4hQQbTod_8c/edit?usp=sharing)
-
-**10 月 31 日（周五）：** [Isaac Evans](https://www.linkedin.com/in/isaacevans/) ([Semgrep](https://semgrep.dev/) 首席执行官)
-
-### 第 7 周：现代软件支持
-
-**主题**
-
-  - 我们可以信任哪些 AI 代码系统
-  - 调试与诊断
-  - 智能文档生成
-
-**阅读材料**
-
-  - [代码审查：做就对了: Code Reviews: Just Do It](https://blog.codinghorror.com/code-reviews-just-do-it/)
-  - [如何有效进行代码审查: How to Review Code Effectively](https://github.blog/developer-skills/github/how-to-review-code-effectively-a-github-staff-engineers-philosophy/)
-  - [现代代码审查中 AI 辅助的编码实践评估: AI-Assisted Assessment of Coding Practices in Modern Code Review](https://arxiv.org/pdf/2405.13565)
-  - [AI 代码审查实施最佳实践: AI Code Review Implementation Best Practices](https://graphite.dev/guides/ai-code-review-implementation-best-practices)
-  - [软件团队的代码审查要点: Code Review Essentials for Software Teams](https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html)
-  - [从数百万次 AI 代码审查中汲取的经验: Lessons from millions of AI code reviews](https://www.youtube.com/watch?v=TswQeKftnaw)
-    - [欢迎提供中文版视频]
-
-**课后作业**
-
-  - [代码审查练习: Code Review Reps](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week7)
-
-**11 月 3 日（周一）：** AI 代码审查 - [Slides](https://docs.google.com/presentation/d/1NkPzpuSQt6Esbnr2-EnxM9007TL6ebSPFwITyVY-QxU/edit?usp=sharing)
-
-**11 月 7 日（周五）：** [Tomas Reimers](https://www.linkedin.com/in/tomasreimers/) ([Graphite](https://graphite.dev/) 首席产品官) - [Slides](https://drive.google.com/file/d/1hwF-RIkOJ_OFy17BKhzFyCtxSS7Pcf7p/view?usp=drive_link)
-
-### 第 8 周：自动化 UI 和应用程序构建
-
-**主题**
-
-  - 面向所有人的设计和前端开发
-  - 快速 UI/UX 原型设计和迭代
-
-**课后作业**
-
-  - [多技术栈 Web 应用程序构建: Multi-stack Web App Builds](https://github.com/mihail911/modern-software-dev-assignments/tree/master/week8)
-
-**11 月 10 日（周一）：** 通过单个提示词实现端到端应用程序 - [Slides](https://docs.google.com/presentation/d/1GrVLsfMFIXMiGjIW9D7EJIyLYh_-3ReHHNd_vRfZUoo/edit?usp=sharing)
-
-**11 月 14 日（周五）：** [Gaspar Garcia](https://www.linkedin.com/in/gaspargarcia/) ([Vercel](https://vercel.com/) AI 研究负责人) - [Slides](https://docs.google.com/presentation/d/1Jf2aN5zIChd5tT86rZWWqY-iDWbxgR-uynKJxBR7E9E/edit?usp=sharing)
-
-### 第 9 周：智能体部署后
-
-**主题**
-
-  - AI 系统的监控和可观测性
-  - 自动化事件响应
-  - 分诊和调试
-
-**阅读材料**
-
-  - [网站可靠性工程 (SRE) 简介: Introduction to Site Reliability Engineering](https://sre.google/sre-book/introduction/)
-  - [你应该了解的可观测性基础知识: Observability Basics You Should Know](https://last9.io/blog/traces-spans-observability-basics/)
-  - [使用 AI 进行 Kubernetes 故障排除: Kubernetes Troubleshooting with AI](https://resolve.ai/blog/kubernetes-troubleshooting-in-resolve-ai)
-  - [你的新自主队友: Your New Autonomous Teammate](https://resolve.ai/blog/product-deep-dive)
-  - [多智能体系统在使软件工程师具备 AI 原生能力中的作用: Role of Multi Agent Systems in Making Software Engineers AI-native](https://resolve.ai/blog/role-of-multi-agent-systems-AI-native-engineering)
-  - [智能体 AI 在待命工程中的优势: Benefits of Agentic AI in On-call Engineering](https://resolve.ai/blog/Top-5-Benefits)
-
-**11 月 17 日（周一）：** 事件响应和 DevOps - [Slides](https://docs.google.com/presentation/d/1Mfe-auWAsg9URCujneKnHr0AbO8O-_U4QXBVOlO4qp0/edit?usp=sharing)
-
-**11 月 21 日（周五）：** [Mayank Agarwal](https://www.linkedin.com/in/mayank-ag/) ([Resolve](https://resolve.ai/) 首席技术官) 和 [Milind Ganjoo](https://www.linkedin.com/in/mganjoo/) ([Resolve](https://resolve.ai/) 技术人员) - [Slides](https://drive.google.com/file/d/11WnEbMGc9kny_WBpMN10I8oP8XsiQOnM/view?usp=sharing)
-
-### 第 10 周：AI 软件工程的未来展望
-
-**主题**
-
-  - 软件开发角色的未来
-  - 新兴的 AI 编码范式
-  - 行业趋势与预测
-
-**12 月 1 日（周一）：** 十年后的软件开发
-
-**12 月 5 日（周五）：** [Martin Casado](https://a16z.com/author/martin-casado/) ([a16z](https://a16z.com/) 普通合伙人)
-
----
-
-
-## 本地应用
-- [Dyad](https://www.dyad.sh/) - 免费、本地、开源的AI应用构建器
-
-## 命令行工具
-
-- [anthropics/claude-code](https://github.com/anthropics/claude-code) - 理解你的代码库、自动化任务、解释代码和管理git的编程代理，全部通过自然语言。
-- [aider](https://aider.chat/) - 在终端中进行AI结对编程。
-- [codename goose](https://block.github.io/goose/) - 本地机器AI代理，允许你使用任何LLM并添加任何MCP服务器作为扩展
-- [MyCoder.ai](https://github.com/drivecore/mycoder) - 开源AI驱动的编程助手，具有Git和GitHub集成，支持并行执行和自修改功能。
-- [ai-christianson/RA.Aid](https://github.com/ai-christianson/RA.Aid) - 基于LangGraph代理任务执行框架构建的独立编程代理
-- [CodeSelect](https://github.com/maynetee/codeselect) - 基于Python的命令行工具，高效地将项目源代码传达给AI。
-- [OpenAI Codex CLI](https://github.com/openai/codex) - OpenAI的轻量级编程代理，在终端中运行
-- [Gemini CLI](https://github.com/google-gemini/gemini-cli) - 谷歌开源的AI代理，将 Gemini 的强大功能直接带入您的终端。
-- [vibe-cli](https://github.com/Jinjos/vibe-cli) - 氛围编程工作流的命令行界面。
-- [langchain-code](https://github.com/zamalali/langchain-code) - 基于LangChain的编程代理，用于AI辅助开发。
-- [kimi-cli](https://github.com/MoonshotAI/kimi-cli) - Kimi官方命令行界面，一个帮助编程任务和开发工作流的AI助手。
-
-## 国产编程平台
-
-
-| 国产编程模型          | 定位                                      | 个人最低订阅价                                                                                                                                       | CLI & IDE                                                                                                                                                                       | 其他                                                                |
-| --------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **GLM-4.6 Coding**    | 智谱「通用+编程」双模长上下文             | [20 元/月（Coding Plan）](https://docs.bigmodel.cn/cn/guide/models/text/glm-4.6)<br>季付 54 元≈18 元/月                                              | – [GLM-CLI（官方）](https://github.com/xqsit94/glm)<br>– Claude Code / Roo Code / Cline 等 10+ 第三方已适配                                                                     | [iFlow（开源流程编排）](https://github.com/OSCC-Project/iFlow)      |
-| **Kimi K2 Thinking**  | 月之暗面「推理+代码」长思考模型           | [49 元/月（K2 会员）](https://kimi-k2.org/zh/blog/15-kimi-k2-thinking-zh)<br>放量 199 元/月                                                          | – Kimi-Code-CLI（内测）<br>– 继续用 Claude Code，自定义 base-url 切到 K2                                                                                                        | [Qwencode（阿里开源轻量 CLI）](https://github.com/alibaba/qwencode) |
-| **Doubao-Seed-Code**  | 字节「Agentic 编程」专用模型，256k 上下文 | [Lite：首月 9.9 元，续费 40 元/月](https://www.volcengine.com/docs/82354/1639499)<br>Pro：首月 49.9 元，续费 200 元/月                               | – [veCLI（火山引擎）](https://www.volcengine.com/docs/82354/1639499)<br>– [Trae（字节官方 AI IDE）](https://www.trae.ai/)<br>– 兼容 Anthropic API，Claude Code 一行配置即可切换 | [CodeBuddy（腾讯开源）](https://github.com/Tencent/CodeBuddy)       |
-| **DeepSeek-Coder**    | 深度求索开源系列，可本地部署              | 模型开源免费<br>[API 按量：输入 1 元 / 百万 tokens，输出 2 元 / 百万 tokens](https://platform.deepseek.com/)                                         | – [DeepSeek-Coder-CLI（官方）](https://coder.deepseek.com/)<br>– continue.dev / OpenCoder 插件                                                                                  | 同上                                                                |
-| **Qwen3-Coder-Flash** | 阿里通义「甜品级」开源编程模型            | 模型开源免费<br>[API 按量：输入≈0.8 元 / 百万 tokens，输出≈1.5 元 / 百万 tokens](https://www.modelscope.cn/models/Qwen/Qwen3-Coder-30B-A3B-Instruct) | – [Qwen-Code-CLI（官方）](https://github.com/QwenLM/Qwen-Code-CLI)<br>– [Qoder（阿里 AI IDE）](https://qoder.aliyun.com/)<br>– Claude Code + 自定义 endpoint                    | 同上                                                                |
 
 
 ## 常见问题
@@ -394,7 +171,7 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 | Doloffer Guide优惠价GPT  claude会员充值 | 正版订阅 售后无忧，https://doloffer.com 9折优惠码：AI8888 https://github.com/Doloffer-g/guide/blob/main/README.md                                                        | [link](https://doloffer.com)                        |
 
 ## 🙏 Acknowledgement
-* [Awesome Vibe Coding](https://github.com/filipecalegario/awesome-vibe-coding) ：一个精选的vibe coding参考列表，专注于通过AI协作编写代码，包括工具、概念和提示工程指南。
+
 
 
 
