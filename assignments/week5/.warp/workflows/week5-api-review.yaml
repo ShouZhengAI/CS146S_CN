@@ -1,0 +1,22 @@
+name: Week 5 API change review
+description: Review one endpoint change with a repeatable diff, contract, and focused-test checklist.
+author: CS146S
+version: "1.0"
+shells:
+  - zsh
+  - bash
+tags:
+  - week5
+  - fastapi
+  - review
+command: |
+  printf 'Endpoint: {{endpoint}}\nAcceptance criteria: {{criteria}}\n\n'
+  git diff -- backend/app backend/tests
+  printf '\nReview checklist:\n- response uses {ok,data,error}\n- validation and 404 paths are covered\n- transaction is atomic\n- pagination reports items,total,page,page_size\n'
+arguments:
+  - name: endpoint
+    description: Endpoint being reviewed, for example GET /notes/search
+    default_value: GET /notes/search
+  - name: criteria
+    description: Observable acceptance criteria
+    default_value: Verify success, validation, pagination, and errors

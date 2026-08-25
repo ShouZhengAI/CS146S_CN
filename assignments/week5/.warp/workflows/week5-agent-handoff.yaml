@@ -1,0 +1,30 @@
+name: Week 5 agent handoff packet
+description: Produce a bounded handoff prompt for a backend, frontend, test, or reviewer agent.
+author: CS146S
+version: "1.0"
+shells:
+  - zsh
+  - bash
+tags:
+  - week5
+  - multi-agent
+  - handoff
+command: |
+  cat <<'PACKET'
+  Role: {{role}}
+  Scope: {{scope}}
+  Contract: Keep API responses as {ok,data,error}; collection data is {items,total,page,page_size}.
+  Task: {{task}}
+  Constraints: Do not edit outside scope. Do not hide errors. Do not run project-wide checks while other agents are editing.
+  Return: changed files, decisions, and focused verification evidence.
+  PACKET
+arguments:
+  - name: role
+    description: backend, frontend, tests, or reviewer
+    default_value: backend
+  - name: scope
+    description: Exact owned files or directories
+    default_value: backend/app/routers/notes.py
+  - name: task
+    description: Concrete behavior and acceptance criteria
+    default_value: Implement one endpoint and its error paths

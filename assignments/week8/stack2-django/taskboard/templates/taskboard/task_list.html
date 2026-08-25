@@ -1,0 +1,12 @@
+{% extends "taskboard/base.html" %}
+{% block content %}
+<header class="top"><div><p class="muted">Django 全栈版本</p><h1>Taskboard</h1></div><a class="button" href="{% url 'task-create' %}">＋ 新建任务</a></header>
+{% for task in tasks %}
+<article class="card task {% if task.completed %}done{% endif %}">
+  <form method="post" action="{% url 'task-toggle' task.pk %}">{% csrf_token %}<button class="link-button" title="切换完成状态">{% if task.completed %}✓ 已完成{% else %}○ 待完成{% endif %}</button></form>
+  <div class="task-main"><h2>{{ task.title }}</h2>{% if task.notes %}<p class="muted">{{ task.notes }}</p>{% endif %}
+    <div class="actions"><a href="{% url 'task-update' task.pk %}">编辑</a><a class="danger" href="{% url 'task-delete' task.pk %}">删除</a></div>
+  </div>
+</article>
+{% empty %}<section class="card empty"><h2>还没有任务</h2><p class="muted">创建第一条任务，开始安排今天。</p></section>{% endfor %}
+{% endblock %}

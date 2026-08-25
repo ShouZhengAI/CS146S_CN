@@ -1,35 +1,49 @@
 <!doctype html>
-<html>
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Modern Software Dev Starter</title>
+    <title>Week 5 Notes</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
     <main>
-      <h1>Modern Software Dev Starter</h1>
+      <h1>笔记与待办</h1>
+      <p id="error" role="alert" hidden></p>
 
       <section>
-        <h2>Notes</h2>
+        <h2>笔记</h2>
         <form id="note-form">
-          <input id="note-title" placeholder="Title" required />
-          <input id="note-content" placeholder="Content" required />
-          <button type="submit">Add</button>
+          <input id="note-title" placeholder="标题" maxlength="200" required />
+          <input id="note-content" placeholder="内容（支持 #标签 和 - [ ] 待办）" maxlength="20000" required />
+          <button type="submit">添加</button>
         </form>
+        <div class="toolbar">
+          <input id="note-search" type="search" placeholder="搜索标题或内容" />
+          <select id="note-sort"><option value="created_desc">最新</option><option value="title_asc">标题</option></select>
+          <select id="tag-filter"><option value="">全部标签</option></select>
+          <button id="note-search-button" type="button">搜索</button>
+        </div>
+        <p id="note-count"></p>
         <ul id="notes"></ul>
+        <div class="pager"><button id="notes-prev">上一页</button><span id="notes-page"></span><button id="notes-next">下一页</button></div>
       </section>
 
       <section>
-        <h2>Action Items</h2>
+        <h2>待办事项</h2>
         <form id="action-form">
-          <input id="action-desc" placeholder="Description" required />
-          <button type="submit">Add</button>
+          <input id="action-desc" placeholder="待办描述" maxlength="500" required />
+          <button type="submit">添加</button>
         </form>
+        <div class="toolbar">
+          <select id="action-filter"><option value="">全部</option><option value="false">未完成</option><option value="true">已完成</option></select>
+          <button id="bulk-complete" type="button">批量完成所选项</button>
+        </div>
+        <p id="action-count"></p>
         <ul id="actions"></ul>
+        <div class="pager"><button id="actions-prev">上一页</button><span id="actions-page"></span><button id="actions-next">下一页</button></div>
       </section>
     </main>
-
     <script src="/static/app.js"></script>
   </body>
 </html>

@@ -1,61 +1,27 @@
-## LLM Prompt 演练场
+## 大语言模型提示词练习场
 
-练习 LLM 提示词工程的核心技术，这对于使用和理解编码型 LLM 至关重要。
+本周练习六种常用提示方法。作业说明见 [assignment.md](./assignment.md)。
 
-# 第 1 周 — 提示词工程技术
+### 1. K-shot Prompting（少样本提示）
 
-你将通过设计提示词来完成特定任务，从而练习多种提示词工程技术。每个任务的说明都位于其相应的源文件顶部。
+先给模型几组“输入单词 → 反转结果”的示例，让它从示例中学会逐字倒序。再明确只输出结果，避免解释或多余符号影响匹配。
 
-## 安装
-请确保你已首先完成顶层 `README.md` 中描述的安装步骤。
+### 2. Chain of Thought（思维链）
 
-## Ollama 安装
-我们将使用一个名为 [Ollama](https://ollama.com/) 的工具，在你的本地机器上运行不同的最先进 LLM。请使用以下方法之一进行安装：
+把模运算拆成小步骤：先找 $3$ 的幂模 $100$ 的周期 $20$，再算 $12345 \bmod 20=5$，最后算 $3^5 \bmod 100=43$。固定最后一行为 `Answer: 43`。
 
-- macOS (Homebrew):
-  ```bash
-  brew install --cask ollama
-  ollama serve
-  ```
+### 3. Tool Calling（工具调用）
 
-- Linux (推荐):
-  ```bash
-  curl -fsSL https://ollama.com/install.sh | sh
-  ```
+告诉模型可用工具的准确名称、参数和 JSON 结构，并要求只输出合法 JSON。执行器解析 JSON 后调用工具，读取 Python 文件中各顶层函数的返回类型。
 
-- Windows:
-  从 [ollama.com/download](https://ollama.com/download) 下载并运行安装程序。
+### 4. Self-Consistency Prompting（自洽提示）
 
-验证安装：
-```bash
-ollama -v
-```
+统一每次推理的步骤：第二次停车点距起点 $60-15=45$ 英里，两次停车点相距 $45-20=25$ 英里。多次生成答案后做多数投票，降低单次随机错误的影响。
 
-在运行测试脚本之前，请确保你已拉取以下模型。这只需要执行一次（除非你之后删除了这些模型）：
-```bash
-ollama run mistral-nemo:12b
-ollama run llama3.1:8b
-```
+### 5. RAG（检索增强生成）
 
-## 技术与源文件
-- K-shot 提示 — `week1/k_shot_prompting.py`
-- 思维链 (Chain-of-thought) — `week1/chain_of_thought.py`
-- 工具调用 (Tool calling) — `week1/tool_calling.py`
-- 自我一致性提示 (Self-consistency prompting) — `week1/self_consistency_prompting.py`
-- RAG (检索增强生成) — `week1/rag.py`
-- 反思 (Reflexion) — `week1/reflexion.py`
+先按“用户、认证、端点”等关键词筛出相关 API 文档，再把文档和问题一起交给模型。要求代码只采用文档给出的基础 URL、请求头、端点和返回字段，避免模型猜测接口。
 
-## 交付内容
-- 阅读每个文件中的任务描述。
-- 设计并运行提示词（查找代码中所有标记为 `TODO` 的位置）。这应该是你唯一需要修改的地方（即不要改动模型）。
-- 迭代改进结果，直到测试脚本通过。
-- 保存每种技术的最终提示词和输出。
-- 确保在提交中包含每个提示词技术文件的完整代码。***请仔细检查所有 `TODO` 是否已解决。***
+### 6. Reflexion（反思修正）
 
-## 评分标准 (总计 60 分)
-- 针对 6 种不同提示词技术中每个完成的提示词，各得 10 分。
-
-
-## 🙏 Acknowledgement
-
-[sweetkruts/cs146s](https://github.com/sweetkruts/cs146s)
+先生成实现并运行测试，再把上一版代码和每条失败信息整理给模型。模型根据“预期值、实际值、缺失检查”定位根因，输出完整修正版，同时保留已经通过的行为。

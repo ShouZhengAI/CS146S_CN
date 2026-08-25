@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Flask SQLite task manager"><title>Clearlist</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header><div><span class="eyebrow">FLASK + SQLITE</span><h1>Clearlist</h1><p>简单记录，清楚完成。</p></div><div id="count" class="count">0 项待完成</div></header>
+    <section class="panel composer">
+      <form id="task-form">
+        <input type="hidden" id="task-id">
+        <label for="title">任务标题</label><input id="title" maxlength="120" required placeholder="下一件要完成的事">
+        <label for="notes">备注</label><textarea id="notes" maxlength="2000" rows="3" placeholder="细节、链接或想法（可选）"></textarea>
+        <label class="check"><input id="completed" type="checkbox"> 已完成</label>
+        <div class="buttons"><button type="submit" id="save">添加任务</button><button type="button" id="cancel" class="secondary" hidden>取消编辑</button></div>
+      </form>
+    </section>
+    <p id="error" class="error" role="alert" hidden></p>
+    <section><div class="toolbar"><h2>我的任务</h2><select id="filter" aria-label="筛选任务"><option value="all">全部</option><option value="open">待完成</option><option value="done">已完成</option></select></div><div id="tasks" class="tasks" aria-live="polite"></div></section>
+  </main>
+  <template id="task-template"><article class="panel task"><button class="toggle" aria-label="切换完成状态"></button><div class="body"><h3></h3><p></p><div class="meta"></div></div><div class="actions"><button class="edit secondary">编辑</button><button class="delete danger">删除</button></div></article></template>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

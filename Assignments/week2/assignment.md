@@ -1,78 +1,78 @@
-# Week 2 – Action Item Extractor
+# 第 2 周——行动项提取器
 
-This week, we will be expanding upon a minimal FastAPI + SQLite app that converts free‑form notes into enumerated action items.
+本周，我们将在一个精简的 FastAPI + SQLite 应用基础上进行扩展。该应用能够将自由格式的笔记转换为按条目列出的行动项。
 
-***We recommend reading this entire document before getting started.***
+***建议在开始之前完整阅读本文档。***
 
-Tip: To preview this markdown file
-- On Mac, press `Command (⌘) + Shift + V`
-- On Windows/Linux, press `Ctrl + Shift + V`
+提示：如需预览此 Markdown 文件
+- 在 Mac 上，按 `Command (⌘) + Shift + V`
+- 在 Windows/Linux 上，按 `Ctrl + Shift + V`
 
 
-## Getting Started
+## 开始使用
 
-### Cursor Set Up
-Follow these instructions to set up Cursor and open your project:
-1. Redeem your free year of Cursor Pro: https://cursor.com/students
-2. Download Cursor: https://cursor.com/download
-3. To enable the Cursor command line tool, open Cursor and press `Command (⌘) + Shift+ P` for Mac users (or `Ctrl + Shift + P` for non-Mac users) to open the Command Palette. Type: `Shell Command: Install 'cursor' command`. Select it and hit Enter.
-4. Open a new terminal window, navigate to your project root, and run: `cursor .`
+### 配置 Cursor
+请按照以下说明配置 Cursor 并打开你的项目：
+1. 领取一年免费 Cursor Pro：https://cursor.com/students
+2. 下载 Cursor：https://cursor.com/download
+3. 如需启用 Cursor 命令行工具，请打开 Cursor。Mac 用户按 `Command (⌘) + Shift + P`（非 Mac 用户按 `Ctrl + Shift + P`）打开命令面板。输入：`Shell Command: Install 'cursor' command`。选中该命令并按 Enter 键。
+4. 打开一个新的终端窗口，进入项目根目录，然后运行：`cursor .`
 
-### Current Application
-Here's how you can start running the current starter application: 
-1. Activate your conda environment.
+### 当前应用
+你可以按照以下步骤运行当前的初始应用：
+1. 激活你的 conda 环境。
 ```
 conda activate cs146s 
 ```
-2. From the project root, run the server:
+2. 在项目根目录下运行服务器：
 ```
 poetry run uvicorn week2.app.main:app --reload
 ```
-3. Open a web browser and navigate to http://127.0.0.1:8000/.
-4. Familiarize yourself with the current state of the application. Make sure you can successfully input notes and produce the extracted action item checklist. 
+3. 打开 Web 浏览器并访问 http://127.0.0.1:8000/。
+4. 熟悉应用当前的状态。请确保你能够成功输入笔记，并生成提取后的行动项核对清单。
 
-## Exercises
-For each exercise, use Cursor to help you implement the specified improvements to the current action item extractor application.
+## 练习
+在每项练习中，使用 Cursor 协助你为当前的行动项提取器应用实现指定的改进。
 
-As you work through the assignment, use `writeup.md` to document your progress. Be sure to include the prompts you use, as well as any changes made by you or Cursor. We will be grading based on the contents of the write-up. Please also include comments throughout your code to document your changes. 
+完成作业的过程中，请使用 `writeup.md` 记录你的进展。务必包含你使用的提示词，以及你本人或 Cursor 所做的任何更改。我们将根据作业报告的内容进行评分。另请在代码中添加注释，记录你所做的更改。
 
-### TODO 1: Scaffold a New Feature
+### TODO 1：搭建新功能的基本框架
 
-Analyze the existing `extract_action_items()` function in `week2/app/services/extract.py`, which currently extracts action items using predefined heuristics.
+分析 `week2/app/services/extract.py` 中现有的 `extract_action_items()` 函数；该函数目前使用预定义的启发式规则提取行动项。
 
-Your task is to implement an **LLM-powered** alternative, `extract_action_items_llm()`, that utilizes Ollama to perform action item extraction via a large language model.
+你的任务是实现一个由**大语言模型（LLM）驱动**的替代函数 `extract_action_items_llm()`，该函数使用 Ollama，通过大语言模型完成行动项提取。
 
-Some  tips:
-- To produce structured outputs (i.e. JSON array of strings), refer to this documentation: https://ollama.com/blog/structured-outputs 
-- To browse available Ollama models, refer to this documentation: https://ollama.com/library. Note that larger models will be more resource-intensive, so start small. To pull and run a model: `ollama run {MODEL_NAME}`
+一些提示：
+- 如需生成结构化输出（即字符串组成的 JSON 数组），请参阅此文档：https://ollama.com/blog/structured-outputs
+- 如需浏览可用的 Ollama 模型，请参阅此页面：https://ollama.com/library。请注意，模型越大，消耗的计算资源越多，因此建议从较小的模型开始。如需拉取并运行模型，请执行：`ollama run {MODEL_NAME}`
 
-### TODO 2: Add Unit Tests 
+### TODO 2：添加单元测试
 
-Write unit tests for `extract_action_items_llm()` covering multiple inputs (e.g., bullet lists, keyword-prefixed lines, empty input) in `week2/tests/test_extract.py`.
+在 `week2/tests/test_extract.py` 中为 `extract_action_items_llm()` 编写单元测试，覆盖多种输入（例如项目符号列表、带关键字前缀的行以及空输入）。
 
-### TODO 3: Refactor Existing Code for Clarity
+### TODO 3：重构现有代码以提升清晰度
 
-Perform a refactor of the code in the backend, focusing in particular on well-defined API contracts/schemas, database layer cleanup, app lifecycle/configuration, error handling. 
+重构后端代码，重点关注定义明确的 API 契约/模式、数据库层清理、应用生命周期/配置以及错误处理。
 
-### TODO 4: Use Agentic Mode to Automate Small Tasks
+### TODO 4：使用智能体模式自动完成小型任务
 
-1. Integrate the LLM-powered extraction as a new endpoint. Update the frontend to include an "Extract LLM" button that, when clicked, triggers the extraction process via the new endpoint.
+1. 将由 LLM 驱动的提取功能集成为一个新端点。更新前端，添加“使用 LLM 提取”按钮；点击后，该按钮应通过新端点触发提取流程。
 
-2. Expose one final endpoint to retrieve all notes. Update the frontend to include a "List Notes" button that, when clicked, fetches and displays them.
+2. 提供最后一个用于检索所有笔记的端点。更新前端，添加“列出笔记”按钮；点击后，该按钮应获取并显示所有笔记。
 
-### TODO 5: Generate a README from the Codebase
+### TODO 5：根据代码库生成 README
 
-***Learning Goal:***
-*Students learn how AI can introspect a codebase and produce documentation automatically, showcasing Cursor’s ability to parse code context and translate it into human‑readable form.*
+***学习目标：***
+*学生将学习 AI 如何分析代码库并自动生成文档，从而展示 Cursor 解析代码上下文并将其转化为人类可读内容的能力。*
 
-Use Cursor to analyze the current codebase and generate a well-structured `README.md` file. The README should include, at a minimum:
-- A brief overview of the project
-- How to set up and run the project
-- API endpoints and functionality
-- Instructions for running the test suite
+使用 Cursor 分析当前代码库并生成一份结构清晰的 `README.md` 文件。README 至少应包含：
+- 项目简介
+- 项目的配置与运行方法
+- API 端点及其功能
+- 运行测试套件的说明
 
-## Deliverables
-Fill out `week2/writeup.md` according to the instructions provided. Make sure all your changes are documented in your codebase. 
+## 提交内容
+请按照提供的说明填写 `week2/writeup.md`。确保你所做的所有更改均已记录在代码库中。
 
-## Evaluation rubric (100 pts total)
-- 20 points per part 1-5 (10 for the generated code and 10 for each prompt).
+## 评分标准（总计 100 分）
+- 第 1～5 部分每部分 20 分（生成的代码占 10 分，每部分使用的提示词占 10 分）。

@@ -1,118 +1,117 @@
-# Week 5 — Agentic Development with Warp
+# 第 5 周——使用 Warp 进行智能体式开发
 
-Use the app in `week5/` as your playground. This week mirrors the prior assignment but emphasizes the Warp agentic development environment and multi‑agent workflows.
+请将 `week5/` 中的应用作为你的实验场。本周作业与上一次类似，但将重点放在 Warp 智能体式开发环境和多智能体工作流上。
 
-## Learn about Warp
-- Warp Agentic Development Environment: [warp.dev](https://www.warp.dev/)
+## 了解 Warp
+- Warp 智能体式开发环境：[warp.dev](https://www.warp.dev/)
 - [Warp University](https://www.warp.dev/university?slug=university)
 
 
-## Explore the Starter Application
-Minimal full‑stack starter application.
-- FastAPI backend with SQLite (SQLAlchemy)
-- Static frontend (no Node toolchain needed)
-- Minimal tests (pytest)
-- Pre-commit (black + ruff)
-- Tasks to practice agent-driven workflows
+## 探索起始应用
+这是一个最小化全栈起始应用。
+- 使用 SQLite（SQLAlchemy）的 FastAPI 后端
+- 静态前端（无需 Node 工具链）
+- 最小化测试（pytest）
+- Pre-commit（black + ruff）
+- 用于练习智能体驱动工作流的任务
 
-Use this application as your playground to experiment with the Warp automations you build.
+请将此应用作为实验场，用来尝试你构建的 Warp 自动化。
 
-### Structure
+### 目录结构
 
 ```
-backend/                # FastAPI app
-frontend/               # Static UI served by FastAPI
-data/                   # SQLite DB + seed
-docs/                   # TASKS for agent-driven workflows
+backend/                # FastAPI 应用
+frontend/               # 由 FastAPI 提供服务的静态界面
+data/                   # SQLite 数据库及种子数据
+docs/                   # 用于智能体驱动工作流的任务清单
 ```
 
-### Quickstart
+### 快速开始
 
-1) Activate your conda environment.
+1) 激活你的 conda 环境。
 
 ```bash
 conda activate cs146s
 ```
 
-2) (Optional) Install pre-commit hooks
+2) （可选）安装 pre-commit 钩子
 
 ```bash
 pre-commit install
 ```
 
-3) Run the app (from `week5/` directory)
+3) 运行应用（从 `week5/` 目录）
 
 ```bash
 make run
 ```
 
-4) Open `http://localhost:8000` for the frontend and `http://localhost:8000/docs` for the API docs.
+4) 访问 `http://localhost:8000` 查看前端，访问 `http://localhost:8000/docs` 查看 API 文档。
 
-5) Play around with the starter application to get a feel for its current features and functionality.
+5) 尝试使用这个起始应用，熟悉其现有特性和功能。
 
 
-### Testing
-Run the tests (from `week5/` directory)
+### 测试
+运行测试（从 `week5/` 目录）
 ```bash
 make test
 ```
 
-### Formatting/Linting
+### 格式化/代码检查
 ```bash
 make format
 make lint
 ```
 
-## Part I: Build Your Automation (Choose 2 or more) 
-Select tasks from `week5/docs/TASKS.md` to implement. Your implementation must leverage Warp in both of the following ways (more details below):
+## 第一部分：构建你的自动化（选择至少 2 项）
+从 `week5/docs/TASKS.md` 中选择任务并实现。你的实现必须通过以下两种方式使用 Warp（更多细节见下文）：
 
-- A) Use Warp Drive features — such as saved prompts, rules, or MCP servers.
-- (B) Incorporate multi-agent workflows within Warp.
+- A) 使用 Warp Drive 功能，例如已保存的提示词、规则或 MCP 服务器。
+- B) 在 Warp 中使用多智能体工作流。
 
-Keep your changes focused on backend, frontend, logic, or tests inside `week5/`.
-For each selected task, note its difficulty level.
-
-
-### A) Warp Drive saved prompts, rules, MCP servers (REQUIRED: at least one)
-Create one or more shareable Warp Drive prompts, rules, or MCP server integrations tailored to this repo. Examples:
-- Test runner with coverage and flaky‑test re‑run
-- Docs sync: generate/update `docs/API.md` from `/openapi.json`, list route deltas
-- Refactor harness: rename a module, update imports, run lint/tests
-- Release helper: bump versions, run checks, prepare a changelog snippet
-- Integrate the Git MCP server to have Warp interact with Git autonomously (creating branches, commits, PR notes, etc)
-
->*Tips: keep workflows focused, pass arguments, make them idempotent, and prefer headless/non‑interactive steps where possible.*
-
-### B) Multi‑agent workflows in Warp (REQUIRED: at least one)
-Run a multi‑agent session where separate agents in different Warp tabs handle independent tasks concurrently. 
-- Perform multiple self-contained tasks from `TASKS.md` in separate Warp tabs using concurrent agents. Challenge: how many agents can you have working simultaneously?
-
->*Tips: [git worktree](https://git-scm.com/docs/git-worktree) may be helpful here to keep agents from clobbering over each other.*
+请将改动限定在 `week5/` 内的后端、前端、逻辑或测试中。
+请注明每项所选任务的难度级别。
 
 
-## Part II: Put Your Automations to Work 
-Now that you’ve built 2+ automations, let's put them to use! In the `writeup.md` under section *"How you used the automation (what pain point it resolves or accelerates)"*, describe how you leveraged each automation to improve some workflow.
+### A) Warp Drive 已保存的提示词、规则、MCP 服务器（必做：至少一项）
+创建一个或多个适用于此代码仓库且可共享的 Warp Drive 提示词、规则或 MCP 服务器集成。例如：
+- 支持覆盖率统计和不稳定测试重跑的测试运行器
+- 文档同步：根据 `/openapi.json` 生成/更新 `docs/API.md`，并列出路由差异
+- 重构工具：重命名模块、更新导入并运行代码检查/测试
+- 发布助手：递增版本号、运行检查并准备一段变更日志
+- 集成 Git MCP 服务器，使 Warp 能够自主地与 Git 交互（创建分支、提交、拉取请求说明等）
 
-## Constraints and scope
-Work strictly in `week5/` (backend, frontend, logic, tests). Avoid changing other weeks unless the automation explicitly requires it and you document why.
+>*提示：保持工作流目标明确；支持传入参数；确保幂等性；并尽可能优先采用无界面、非交互式步骤。*
 
+### B) Warp 中的多智能体工作流（必做：至少一项）
+运行一次多智能体会话，让不同 Warp 标签页中的独立智能体并发处理彼此独立的任务。
+- 在不同 Warp 标签页中使用并发智能体，执行 `TASKS.md` 中多个相互独立、可自行完成的任务。挑战：你能让多少个智能体同时工作？
 
-## Deliverables
-1) Two or more Warp automations, which may include:
-   - Warp Drive workflows/rules (share links and/or exported definitions) and any helper scripts
-   - Any supplemental prompts/playbooks used to coordinate multiple agents
-
-2) A write‑up `writeup.md` under `week5/` that includes:
-   - Design of each automation, including goals, inputs/outputs, steps
-   - Before vs. after (i.e. manual workflow vs. automated workflow)
-   - Autonomy levels used for each completed task (which code permissions, why, and how you supervised)
-   - (if applicable) Multi‑agent notes: roles, coordination strategy, and concurrency wins/risks/failures
-   - How you used the automation (what pain point it resolves or accelerates)
+>*提示：[git worktree](https://git-scm.com/docs/git-worktree) 可能有助于防止智能体相互覆盖改动。*
 
 
+## 第二部分：实际运用你的自动化
+既然你已经构建了至少 2 个自动化，现在就来实际使用它们！请在 `writeup.md` 的 *“你如何使用该自动化（它解决了什么痛点或加速了什么工作）”* 一节中，说明你如何利用每个自动化来改进某项工作流。
 
-## SUBMISSION INSTRUCTIONS
-1. Make sure you have all changes pushed to your remote repository for grading.
-2. **Make sure you've added both brentju and febielin as collaborators on your assignment repository.**
-2. Submit via Gradescope. 
+## 约束与范围
+严格在 `week5/` 中工作（后端、前端、逻辑、测试）。除非自动化明确需要修改其他周的内容，并且你记录了原因，否则请勿改动其他周。
 
+
+## 提交内容
+1) 两个或更多 Warp 自动化，可以包括：
+   - Warp Drive 工作流/规则（提供分享链接和/或导出的定义）以及任何辅助脚本
+   - 用于协调多个智能体的任何补充提示词/操作手册
+
+2) `week5/` 下的书面报告 `writeup.md`，其中应包括：
+   - 每个自动化的设计，包括目标、输入/输出和步骤
+   - 使用前与使用后的对比（即手动工作流与自动化工作流的对比）
+   - 每项已完成任务所使用的自主性级别（授予了哪些代码权限、原因是什么，以及你如何监督）
+   - （如适用）多智能体说明：角色、协调策略，以及并发带来的收益/风险/失败情况
+   - 你如何使用该自动化（它解决了什么痛点或加速了什么工作）
+
+
+
+## 提交说明
+1. 确保你已将所有改动推送到远程代码仓库，以供评分。
+2. **确保你已将 brentju 和 febielin 两人都添加为作业代码仓库的协作者。**
+2. 通过 Gradescope 提交。

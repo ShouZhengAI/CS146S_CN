@@ -1,5 +1,3 @@
-# Acknowledgement:github.com/sweetkruts/cs146s
-
 import os
 import re
 from typing import List, Callable
@@ -29,24 +27,26 @@ def load_corpus_from_files(paths: List[str]) -> List[str]:
     return corpus
 
 
-# Load corpus from external files (simple API docs). If missing, fall back to inline snippet
+# 从外部文件（简单的 API 文档）加载语料库；如果文件缺失，则回退到内联片段
 CORPUS: List[str] = load_corpus_from_files(DATA_FILES)
 
 QUESTION = (
-    "Write a Python function `fetch_user_name(user_id: str, api_key: str) -> str` that calls the documented API "
-    "to fetch a user by id and returns only the user's name as a string."
+    "编写一个 Python 函数 `fetch_user_name(user_id: str, api_key: str) -> str`，调用文档中说明的 API "
+    "按 ID 获取用户，并仅以字符串形式返回该用户的姓名。"
 )
 
 
-# TODO: Fill this in!
+# 要求模型把检索到的文档视为唯一事实来源，避免臆造 API。
 YOUR_SYSTEM_PROMPT = """
-Do not make up any information. Only use the provided Context.
-- Write clear, standard Python with necessary imports.
+你是一个基于检索文档编写代码的助手。严格遵守用户提供的 API 文档，只使用文档明确
+给出的基础 URL、端点、HTTP 方法、认证请求头和响应字段，不得猜测或替换任何值。
+完整满足任务中的错误处理与返回值要求。只输出一个带 ```python 围栏的代码块，
+代码块中包含必要导入和所要求的函数，不输出解释。
 """
 
 
-# For this simple example
-# For this coding task, validate by required snippets rather than exact string
+# 对于这个简单示例
+# 对于此编程任务，按必需的代码片段进行验证，而不是要求字符串完全一致
 REQUIRED_SNIPPETS = [
     "def fetch_user_name(",
     "requests.get",
@@ -57,37 +57,62 @@ REQUIRED_SNIPPETS = [
 
 
 def YOUR_CONTEXT_PROVIDER(corpus: List[str]) -> List[str]:
-    """TODO: Select and return the relevant subset of documents from CORPUS for this task.
+    """返回包含当前问题所需 API 信息的文档片段。"""
+    query = QUESTION.casefold()
+    query_terms = {
+        term
+        for term in re.findall(r"[a-z][a-z0-9_-]+", query)
+        if len(term) > 2
+    }
+    # 中英文文档可能使用不同说法；这些词覆盖用户、认证和端点信息。
+    api_terms = query_terms | {
+        "user",
+        "users",
+        "userclient",
+        "api",
+        "auth",
+        "authentication",
+        "endpoint",
+        "用户",
+        "身份验证",
+        "端点",
+        "密钥",
+    }
 
-    For example, return [] to simulate missing context, or [corpus[0]] to include the API docs.
-    """
-    return [corpus[0]] if corpus else []
+    relevant_docs: List[str] = []
+    for doc in corpus:
+        normalized = doc.casefold()
+        if normalized.startswith(("[load_error]", "[missing_file]")):
+            continue
+        if any(term in normalized for term in api_terms):
+            relevant_docs.append(doc)
+    return relevant_docs
 
 
 def make_user_prompt(question: str, context_docs: List[str]) -> str:
     if context_docs:
         context_block = "\n".join(f"- {d}" for d in context_docs)
     else:
-        context_block = "(no context provided)"
+        context_block = "（未提供上下文）"
     return (
-        f"Context (use ONLY this information):\n{context_block}\n\n"
-        f"Task: {question}\n\n"
-        "Requirements:\n"
-        "- Use the documented Base URL and endpoint.\n"
-        "- Send the documented authentication header.\n"
-        "- Raise for non-200 responses.\n"
-        "- Return only the user's name string.\n\n"
-        "Output: A single fenced Python code block with the function and necessary imports.\n"
+        f"上下文（只能使用以下信息）：\n{context_block}\n\n"
+        f"任务：{question}\n\n"
+        "要求：\n"
+        "- 使用文档中说明的基础 URL 和端点。\n"
+        "- 发送文档中说明的身份验证请求头。\n"
+        "- 对非 200 响应调用 raise_for_status()。\n"
+        "- 仅返回用户姓名字符串。\n\n"
+        "输出：只输出一个带围栏的 Python 代码块，其中包含该函数及必要的导入。\n"
     )
 
 
 def extract_code_block(text: str) -> str:
-    """Extract the last fenced Python code block, or any fenced code block, else return text."""
-    # Try ```python ... ``` first
+    """提取最后一个带围栏的 Python 代码块；若没有，则提取任意带围栏的代码块，否则返回原文本。"""
+    # 首先尝试匹配 ```python ... ```
     m = re.findall(r"```python\n([\s\S]*?)```", text, flags=re.IGNORECASE)
     if m:
         return m[-1].strip()
-    # Fallback to any fenced code block
+    # 回退为匹配任意带围栏的代码块
     m = re.findall(r"```\n([\s\S]*?)```", text)
     if m:
         return m[-1].strip()
@@ -95,12 +120,12 @@ def extract_code_block(text: str) -> str:
 
 
 def test_your_prompt(system_prompt: str, context_provider: Callable[[List[str]], List[str]]) -> bool:
-    """Run up to NUM_RUNS_TIMES and return True if any output matches EXPECTED_OUTPUT."""
+    """最多运行 NUM_RUNS_TIMES 次；若任意一次输出包含所有 REQUIRED_SNIPPETS，则返回 True。"""
     context_docs = context_provider(CORPUS)
     user_prompt = make_user_prompt(QUESTION, context_docs)
 
     for idx in range(NUM_RUNS_TIMES):
-        print(f"Running test {idx + 1} of {NUM_RUNS_TIMES}")
+        print(f"正在运行第 {idx + 1}/{NUM_RUNS_TIMES} 次测试")
         response = chat(
             model="llama3.1:8b",
             messages=[
@@ -117,10 +142,10 @@ def test_your_prompt(system_prompt: str, context_provider: Callable[[List[str]],
             print("SUCCESS")
             return True
         else:
-            print("Missing required snippets:")
+            print("缺少必需的代码片段：")
             for s in missing:
                 print(f"  - {s}")
-            print("Generated code:\n" + code)
+            print("生成的代码：\n" + code)
     return False
 
 

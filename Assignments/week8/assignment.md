@@ -1,72 +1,71 @@
-# Week 8 – Multi-Stack AI-Accelerated Web App Build
+# 第 8 周——多技术栈 AI 加速 Web 应用开发
 
-## Demo Day Confirmation
-Please navigate to this [form](https://forms.gle/J3R3PSRqnFAJxhjG8) for details about our class demo day.
-
-
-## Assignment Overview
-Build the same functional web application in 3 distinct technology stacks. At least one version must be created using [`bolt.new`](https://bolt.new/), an AI app generation platform. At least one version must use a non-JavaScript language for either the frontend or backend (e.g., Django, Ruby on Rails).
-
-You may reuse the app from previous weeks (the "developer control center") or create a new app of your choosing, as long as it meets the [minimum functional scope](#minimum-functional-scope). The app should be end-to-end functional (frontend + backend + persistence where applicable) and demonstrate a coherent feature set.
-
-## Minimum Functional Scope 
-- User can create, read, update, and delete a primary resource (e.g., notes, tasks, posts).
-- Persistent storage (database or file-based) where appropriate for the stack.
-- Basic validation and error handling.
-- Simple but functional UI that surfaces the main flows.
-- Clear instructions to run each version locally (and deploy links if you deploy).
-
-## Stack Requirements
-Build 3 separate versions of the same app, each of which use a distinct stack. Examples:
-- MERN (MongoDB, Express, React, Node.js)
-- MEVN (MongoDB, Express, Vue.js, Node.js)
-- Django + React (or Vue)
-- Flask + Vanilla JS (or React)
-- Next.js + Node (or NestJS)
-- Ruby on Rails (full-stack)
-
-Reminder that at least one version must include a non-JavaScript language for either frontend or backend (e.g., Python/Django, Ruby/Rails).
+## Demo Day 确认
+请访问此[表单](https://forms.gle/J3R3PSRqnFAJxhjG8)，了解课程 Demo Day 的详细信息。
 
 
-At least one version must be built using the AI app generation platform **[`bolt.new`](https://bolt.new/)**, but feel free to explore other app generation platforms (e.g. Lovable, Figma Make) for the other versions.
+## 作业概述
+使用 3 种不同的技术栈构建功能相同的 Web 应用。其中至少一个版本必须使用 AI 应用生成平台 [`bolt.new`](https://bolt.new/) 创建。至少一个版本的前端或后端必须使用非 JavaScript 语言（例如 Django、Ruby on Rails）。
+
+你可以复用前几周的应用（“开发者控制中心”），也可以自行选择并创建一个新应用，只要它符合[最低功能范围](#最低功能范围)即可。该应用应具备完整的端到端功能（前端 + 后端 + 适用情况下的持久化），并展示一组连贯的功能。
+
+## 最低功能范围 
+- 用户可以对一种主要资源（例如笔记、任务、帖子）进行创建、读取、更新和删除（CRUD）操作。
+- 在适合相应技术栈的情况下使用持久化存储（数据库或基于文件的存储）。
+- 基本的输入验证与错误处理。
+- 简洁但功能完备的用户界面，能够呈现主要操作流程。
+- 清晰说明如何在本地运行每个版本（如果进行了部署，还需提供部署链接）。
+
+## 技术栈要求
+使用不同的技术栈分别构建同一应用的 3 个独立版本。示例：
+- MERN（MongoDB、Express、React、Node.js）
+- MEVN（MongoDB、Express、Vue.js、Node.js）
+- Django + React（或 Vue）
+- Flask + 原生 JavaScript（或 React）
+- Next.js + Node（或 NestJS）
+- Ruby on Rails（全栈）
+
+请注意，至少一个版本的前端或后端必须包含一种非 JavaScript 语言（例如 Python/Django、Ruby/Rails）。
 
 
-## Learn about Bolt
-Bolt is an AI-assisted development platform that generates websites, web apps, and mobile apps from natural language prompts. Users can describe their idea in plain text, and Bolt produces a functional prototype—ranging from landing pages and e-commerce sites to CRMs and mobile tools—within minutes. Learn more [here](https://support.bolt.new/building/intro-bolt).
-
-### Claim your Bolt Credits:
-1. Locate the unique Bolt promotion code that we've emailed to you.
-2. Navigate to [bolt.new](bolt.new) and create an account.
-3. In Personal Settings > Subscriptions & Tokens, in the Upgrade to Pro block, click the blue "Upgrade" button.
-3. Select "Add promotion code" and paste your unqiue promotion code into this field.
-4. You’ll receive 3 months of Bolt Pro for free. A credit card is required to activate the trial. **Remember to cancel before the 3-month period ends to avoid automatic billing if you don’t plan to continue your subscription.**
+至少一个版本必须使用 AI 应用生成平台 **[`bolt.new`](https://bolt.new/)** 构建；你也可以自由探索其他应用生成平台（例如 Lovable、Figma Make）来构建其余版本。
 
 
-## Tips for Usage of AI App Generators
-- App generators like Bolt are best-suited for modern full-stack technologies, which you will get by default when using them without specifying specific frameworks.
-- Prefer starting from a clean prompt describing your app concept, entities, routes, and UI flows.
-- Clearly describe data models and relationships in your prompts.
-- Iteratively refine prompts for data models, CRUD endpoints, auth (if used), and frontend components.
-- Keep each version isolated to avoid dependency conflicts.
-- Export or sync generated code and commit it as a standalone project folder for that stack.
+## 了解 Bolt
+Bolt 是一个 AI 辅助开发平台，能够根据自然语言提示生成网站、Web 应用和移动应用。用户可以使用自然语言描述自己的想法，Bolt 会在几分钟内生成可运行的原型——从落地页和电子商务网站，到客户关系管理系统（CRM）和移动工具均可涵盖。点击[此处](https://support.bolt.new/building/intro-bolt)了解更多信息。
+
+### 领取你的 Bolt 额度：
+1. 找到我们通过电子邮件发送给你的专属 Bolt 优惠码。
+2. 访问 [bolt.new](bolt.new) 并创建账户。
+3. 在“Personal Settings > Subscriptions & Tokens”中找到“Upgrade to Pro”区域，然后点击蓝色的“Upgrade”按钮。
+3. 选择“Add promotion code”，并将你的专属优惠码粘贴到该字段中。
+4. 你将免费获得 3 个月的 Bolt Pro。激活试用需要提供信用卡。**如果你不打算继续订阅，请务必在 3 个月期限结束前取消，以免系统自动扣费。**
+
+
+## 使用 AI 应用生成器的技巧
+- Bolt 等应用生成器最适合现代全栈技术；如果使用时不指定具体框架，默认生成的通常就是此类技术栈。
+- 建议从一个清晰的提示词开始，描述应用概念、实体、路由和用户界面流程。
+- 在提示词中清楚描述数据模型及其关系。
+- 通过迭代提示词，逐步完善数据模型、CRUD 端点、身份验证（如使用）和前端组件。
+- 将每个版本彼此隔离，以避免依赖冲突。
+- 导出或同步生成的代码，并将对应技术栈的代码作为独立项目文件夹提交。
  
-## Deliverables
-1) **THREE** project folders (one per version) within the `week8/` folder, each including:
-   - Source code
-   - `README.md` with prerequisites, installation/set-up instructions, run, and env configuration
-   - Notes on deviations, known issues, and any manual fixes after generation
-2) Completed `writeup.md` file:
-   - App Concept
-   - 3 App Descriptions (1 per version)
+## 提交内容
+1) `week8/` 文件夹中的 **三个**项目文件夹（每个版本一个），每个文件夹均须包含：
+   - 源代码
+   - `README.md`，其中包含前置条件、安装/设置说明、运行方式和环境配置
+   - 关于偏离要求之处、已知问题以及生成后所做手动修复的说明
+2) 填写完整的 `writeup.md` 文件：
+   - 应用概念
+   - 3 个应用版本的说明（每个版本一份）
 
-## Grading Rubric (100 points)
-- App concept meets minimum functional scope (10 pts)
-- Three distinct tech stacks (10 pts)
-- Usage of Bolt in at least one version (10 pts)
-- Usage of a non-JS language in at least one version (10 pts)
-- Three version of the app (20 pts **each**):
-   - Source code provided in a folder in `week8/`(5pts)
-   - README.md: prerequisites, installation/set-up instructions, run, and env configuration (5 pts)
-   - App functionality (5 pts)
-   - Complete version description detailed in `writeup.md` (5 pts)
-
+## 评分标准（100 分）
+- 应用概念符合最低功能范围（10 分）
+- 使用三种不同的技术栈（10 分）
+- 至少一个版本使用 Bolt（10 分）
+- 至少一个版本使用非 JavaScript 语言（10 分）
+- 应用的三个版本（**每个**版本 20 分）：
+   - 在 `week8/` 中的一个文件夹内提供源代码（5 分）
+   - `README.md`：包含前置条件、安装/设置说明、运行方式和环境配置（5 分）
+   - 应用功能（5 分）
+   - 在 `writeup.md` 中提供完整、详细的版本说明（5 分）

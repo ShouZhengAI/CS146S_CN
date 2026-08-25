@@ -1,19 +1,23 @@
 from __future__ import annotations
-
+from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Any, Dict, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from .db import init_db
 from .routers import action_items, notes
-from . import db
 
-init_db()
 
-app = FastAPI(title="Action Item Extractor")
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    """Create local storage when the application starts."""
+    init_db()
+    yield
+
+
+app = FastAPI(title="Action Item Extractor", lifespan=lifespan)
 
 
 @app.get("/", response_class=HTMLResponse)

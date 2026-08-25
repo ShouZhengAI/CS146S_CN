@@ -1,72 +1,77 @@
-# Week 5 Write-up
-Tip: To preview this markdown file
-- On Mac, press `Command (⌘) + Shift + V`
-- On Windows/Linux, press `Ctrl + Shift + V`
+# 第 5 周书面报告
 
-## INSTRUCTIONS
+## 提交信息
 
-Fill out all of the `TODO`s in this file.
+姓名：**课程提交者（仓库未提供姓名）**  
+SUNet ID：**仓库未提供，请提交者核对个人信息**  
+引用资料：**FastAPI、Pydantic v2、SQLAlchemy 2.0 与 Warp Drive 官方文档；`docs/TASKS.md`**
 
-## SUBMISSION DETAILS
+用时：**未单独计时**。
 
-Name: **TODO** \
-SUNet ID: **TODO** \
-Citations: **TODO**
+## 你的回答
 
-This assignment took me about **TODO** hours to do. 
+### 自动化 A：Warp Drive 已保存的提示词、规则、MCP 服务器
 
+#### a. 设计：目标、输入/输出和步骤
 
-## YOUR RESPONSES
-### Automation A: Warp Drive saved prompts, rules, MCP servers
+规则保存在 `.warp/rules/week5-engineering.md`，统一约束响应封装、分页、事务和乐观更新。`week5-api-review` 工作流输入端点和验收条件，输出当前后端/测试差异与审查清单；步骤是打印契约、读取 diff、逐项检查错误、分页和事务。它只读仓库，不需要 MCP 服务器或外部账号。
 
-a. Design of each automation, including goals, inputs/outputs, steps
-> TODO
+#### b. 使用前后对比
 
-b. Before vs. after (i.e. manual workflow vs. automated workflow)
-> TODO
+手动方式要反复记忆每个端点的返回格式，容易漏掉 404、分页边界或回滚。自动化后，同一份规则会随审查工作流出现，检查顺序固定，减少接口间格式漂移。
 
-c. Autonomy levels used for each completed task (what code permissions, why, and how you supervised)
-> TODO
+#### c. 自主性级别与监督
 
-d. (if applicable) Multi‑agent notes: roles, coordination strategy, and concurrency wins/risks/failures
-> TODO
+规则与审查工作流属于低自主性：允许读取仓库和运行无副作用的 `git diff`，不允许自动改代码、提交或发布。实现阶段由人批准文件范围；每个端点通过契约测试和最终 diff 监督。
 
-e. How you used the automation (what pain point it resolves or accelerates)
-> TODO
+#### d. 多智能体说明
 
+自动化 A 本身是单智能体审查入口，但它使用与自动化 B 相同的共享契约。这样后端、前端和测试代理不会各自发明响应结构。风险是规则过时，所以集成者必须以 `docs/TASKS.md` 和实际 API 为准更新规则。
 
+#### e. 使用方式与价值
 
-### Automation B: Multi‑agent workflows in Warp 
+在完成一个端点后，从 Warp Drive 运行 `Week 5 API change review`，填入端点和验收条件。它解决“功能已写完但错误路径和分页字段漏查”的痛点，也让代码审查可以复现。
 
-a. Design of each automation, including goals, inputs/outputs, steps
-> TODO
+### 自动化 B：Warp 中的多智能体工作流
 
-b. Before vs. after (i.e. manual workflow vs. automated workflow)
-> TODO
+#### a. 设计：目标、输入/输出和步骤
 
-c. Autonomy levels used for each completed task (what code permissions, why, and how you supervised)
-> TODO
+`.warp/workflows/week5-agent-handoff.yaml` 生成边界清楚的交接包；`.warp/prompts/multi-agent-playbook.md` 定义协调者、后端、前端、测试和审查角色。输入是角色、文件范围、具体任务；输出是可直接交给代理的提示词。步骤为：协调者先确定共享契约和文件所有权，并行分派互不重叠的工作，代理返回改动与局部证据，协调者合并，审查代理只读检查，最后统一验证。
 
-d. (if applicable) Multi‑agent notes: roles, coordination strategy, and concurrency wins/risks/failures
-> TODO
+#### b. 使用前后对比
 
-e. How you used the automation (what pain point it resolves or accelerates)
-> TODO
+手动串行完成时，模型、路由、界面和测试依次等待，且交接依赖聊天上下文。使用工作流后，独立目录可并行处理，所有交接都显式携带范围、契约和完成标准；共享文件仍由一个集成者串行修改，避免冲突。
 
+#### c. 自主性级别与监督
 
-### (Optional) Automation C: Any Additional Automations
-a. Design of each automation, including goals, inputs/outputs, steps
-> TODO
+后端、前端和测试代理使用中等自主性：只能在已分配文件内读写，不能提交、发布、删除数据或修改共享契约。审查代理使用低自主性，只读。协调者通过文件所有权、局部测试证据、最终集成检查和 diff 复核监督。数据库迁移、批量事务和全局错误处理由集成者重点复查。
 
-b. Before vs. after (i.e. manual workflow vs. automated workflow)
-> TODO
+#### d. 多智能体说明
 
-c. Autonomy levels used for each completed task (what code permissions, why, and how you supervised)
-> TODO
+后端代理负责 SQLAlchemy/Pydantic/路由，前端代理负责状态与回滚，测试代理负责外部行为，审查代理寻找遗漏。协调策略是“先冻结接口，再按目录并行，最后单点集成”。收益是前端和测试可与后端并行推演；风险是共享 schema 被并发修改、测试基于旧契约、局部检查误报。通过唯一文件所有者、交接包中的 `{ok,data,error}` 契约和集成后统一验证降低风险。
 
-d. (if applicable) Multi‑agent notes: roles, coordination strategy, and concurrency wins/risks/failures
-> TODO
+#### e. 使用方式与价值
 
-e. How you used the automation (what pain point it resolves or accelerates)
-> TODO
+先运行 `Week 5 agent handoff packet` 为每个角色生成提示词，再把输出分别交给代理。它减少重复说明，避免代理越界，并把“完成”定义为可观察行为而不是只生成代码。
 
+### 自动化 C：安全的批量接口实现检查
+
+#### a. 设计：目标、输入/输出和步骤
+
+该检查复用工程规则和 API 审查工作流，目标是保证 `bulk-complete` 的原子性。输入为端点和“任一 ID 不存在时不得更新任何记录”；输出为事务检查清单。步骤是先查出全部 ID、比较缺失集合、缺失时抛错、全部存在后再修改、最后检查失败路径测试。
+
+#### b. 使用前后对比
+
+手动实现容易边查询边更新，遇到无效 ID 时留下部分完成状态。固定检查后，先验证后写入成为明确顺序，失败场景也进入测试。
+
+#### c. 自主性级别与监督
+
+实现代理拥有目标路由和对应测试的中等写权限，但无数据库运维权限。监督重点是事务边界、缺失 ID 的 404 封装，以及失败请求后重新查询仍为未完成。
+
+#### d. 多智能体说明
+
+后端代理实现原子操作，测试代理从外部验证回滚，审查代理只读检查是否存在“先改后验”的路径。三者职责分离能发现自测盲点；最终由协调者确认测试和实现使用同一契约。
+
+#### e. 使用方式与价值
+
+在批量写接口开发和审查时，把原子性验收条件传给工作流。它直接降低部分写入造成数据不一致的风险，并可复用于其他批量操作。

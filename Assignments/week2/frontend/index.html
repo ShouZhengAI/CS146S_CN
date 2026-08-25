@@ -8,11 +8,15 @@
       body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; margin: 2rem auto; max-width: 800px; padding: 0 1rem; }
       h1 { font-size: 1.5rem; }
       textarea { width: 100%; min-height: 160px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace; }
-      button { padding: 0.5rem 1rem; }
-      .items { margin-top: 1rem; }
+      button { padding: 0.5rem 1rem; cursor: pointer; }
+      button:disabled { cursor: wait; opacity: 0.65; }
+      .items, .notes { margin-top: 1rem; }
       .item { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0; }
+      .note { border: 1px solid #e5e7eb; border-radius: 0.4rem; margin: 0.5rem 0; padding: 0.75rem; }
+      .note p { margin: 0.35rem 0 0; white-space: pre-wrap; }
       .muted { color: #6b7280; font-size: 0.875rem; }
-      .row { display: flex; gap: 0.5rem; align-items: center; }
+      .row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+      .error { color: #b91c1c; }
     </style>
   </head>
   <body>
@@ -24,49 +28,120 @@
     <div class="row">
       <label class="row"><input id="save_note" type="checkbox" checked /> Save as note</label>
       <button id="extract">Extract</button>
+      <button id="extract-llm">使用 LLM 提取</button>
+      <button id="list-notes">列出笔记</button>
     </div>
 
-    <div class="items" id="items"></div>
+    <div class="items" id="items" aria-live="polite"></div>
+    <div class="notes" id="notes" aria-live="polite"></div>
 
     <script>
-      const $ = (sel) => document.querySelector(sel);
+      const $ = (selector) => document.querySelector(selector);
       const itemsEl = $('#items');
-      const btn = $('#extract');
-      btn.addEventListener('click', async () => {
-        const text = $('#text').value;
-        const save = $('#save_note').checked;
-        itemsEl.textContent = 'Extracting...';
-        try {
-          const res = await fetch('/action-items/extract', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text, save_note: save }),
-          });
-          if (!res.ok) throw new Error('Request failed');
-          const data = await res.json();
-          if (!data.items || data.items.length === 0) {
-            itemsEl.innerHTML = '<p class="muted">No action items found.</p>';
-            return;
-          }
-          itemsEl.innerHTML = data.items.map(it => (
-            `<div class="item"><input type="checkbox" data-id="${it.id}" /> <span>${it.text}</span></div>`
-          )).join('');
-          itemsEl.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-            cb.addEventListener('change', async (e) => {
-              const id = e.target.getAttribute('data-id');
-              await fetch(`/action-items/${id}/done`, {
+      const notesEl = $('#notes');
+      const extractButton = $('#extract');
+      const llmButton = $('#extract-llm');
+      const notesButton = $('#list-notes');
+
+      async function requestJson(url, options) {
+        const response = await fetch(url, options);
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.detail || `Request failed (${response.status})`);
+        }
+        return data;
+      }
+
+      function renderMessage(container, message, isError = false) {
+        container.replaceChildren();
+        const paragraph = document.createElement('p');
+        paragraph.className = isError ? 'error' : 'muted';
+        paragraph.textContent = message;
+        container.append(paragraph);
+      }
+
+      function renderItems(items) {
+        itemsEl.replaceChildren();
+        if (!items.length) {
+          renderMessage(itemsEl, 'No action items found.');
+          return;
+        }
+        for (const item of items) {
+          const row = document.createElement('div');
+          row.className = 'item';
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.addEventListener('change', async () => {
+            checkbox.disabled = true;
+            try {
+              await requestJson(`/action-items/${item.id}/done`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ done: e.target.checked }),
+                body: JSON.stringify({ done: checkbox.checked }),
               });
-            });
+            } catch (error) {
+              checkbox.checked = !checkbox.checked;
+              renderMessage(itemsEl, error.message, true);
+            } finally {
+              checkbox.disabled = false;
+            }
           });
-        } catch (err) {
-          console.error(err);
-          itemsEl.textContent = 'Error extracting items';
+          const text = document.createElement('span');
+          text.textContent = item.text;
+          row.append(checkbox, text);
+          itemsEl.append(row);
+        }
+      }
+
+      async function extract(endpoint, button) {
+        const text = $('#text').value;
+        const saveNote = $('#save_note').checked;
+        button.disabled = true;
+        renderMessage(itemsEl, endpoint.includes('llm') ? 'LLM extracting...' : 'Extracting...');
+        try {
+          const data = await requestJson(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, save_note: saveNote }),
+          });
+          renderItems(data.items || []);
+        } catch (error) {
+          renderMessage(itemsEl, error.message, true);
+        } finally {
+          button.disabled = false;
+        }
+      }
+
+      extractButton.addEventListener('click', () => extract('/action-items/extract', extractButton));
+      llmButton.addEventListener('click', () => extract('/notes/extract-llm', llmButton));
+
+      notesButton.addEventListener('click', async () => {
+        notesButton.disabled = true;
+        renderMessage(notesEl, 'Loading notes...');
+        try {
+          const notes = await requestJson('/notes');
+          notesEl.replaceChildren();
+          if (!notes.length) {
+            renderMessage(notesEl, 'No saved notes.');
+            return;
+          }
+          for (const note of notes) {
+            const card = document.createElement('article');
+            card.className = 'note';
+            const meta = document.createElement('div');
+            meta.className = 'muted';
+            meta.textContent = `#${note.id} · ${note.created_at}`;
+            const content = document.createElement('p');
+            content.textContent = note.content;
+            card.append(meta, content);
+            notesEl.append(card);
+          }
+        } catch (error) {
+          renderMessage(notesEl, error.message, true);
+        } finally {
+          notesButton.disabled = false;
         }
       });
-
     </script>
   </body>
   </html>

@@ -1,0 +1,11 @@
+{% extends "taskboard/base.html" %}
+{% block title %}{{ heading }} · Taskboard{% endblock %}
+{% block content %}
+<header class="top"><h1>{{ heading }}</h1></header>
+<form method="post" class="card">{% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}<div class="errors">{{ field.errors }}</div></div>{% endfor %}
+  <button type="submit">保存</button>
+</form>
+<a class="back" href="{% url 'task-list' %}">← 返回任务列表</a>
+{% endblock %}

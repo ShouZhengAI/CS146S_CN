@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color-scheme: dark; }
+button, input, textarea { transition: border-color .2s, background-color .2s, color .2s; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }

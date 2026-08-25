@@ -1,73 +1,110 @@
-# Week 7 Write-up
-Tip: To preview this markdown file
-- On Mac, press `Command (⌘) + Shift + V`
-- On Windows/Linux, press `Ctrl + Shift + V`
+# 第 7 周作业报告
 
-## Instructions
+## 提交信息
 
-Fill out all of the `TODO`s in this file.
+姓名：**未提供**  
+SUNet ID：**未提供**  
+引用资料：FastAPI 请求验证与异常处理文档、Pydantic v2 模型文档、SQLAlchemy ORM 关系文档。
 
-## Submission Details
+完成用时：**未单独记录**。
 
-Name: **TODO** \
-SUNet ID: **TODO** \
-Citations: **TODO**
+> 本目录未关联远程 PR，也没有可引用的提交哈希。下面如实标为 `N/A（本地工作区）`，不虚构链接或审查记录。Graphite Diamond 服务未在当前环境中运行；“审查结果”记录的是按 Diamond 检查维度完成的本地复核，不冒充服务输出。
 
-This assignment took me about **TODO** hours to do. 
+## 任务 1：添加更多端点和验证
 
+### a. 相关提交或议题
 
-## Task 1: Add more endpoints and validations
-a. Links to relevant commits/issues
-> TODO
+`N/A（本地工作区，未创建远程 PR/issue，提交哈希不可用）`
 
-b. PR Description
-> TODO
+### b. PR 描述
 
-c. Graphite Diamond generated code review
-> TODO
+为笔记和行动项补齐创建、列表、单条读取、局部更新和删除接口；保留行动项“一键完成”接口。列表参数限制为 `skip >= 0`、`1 <= limit <= 200`，排序字段使用白名单。请求模型会去除字符串首尾空格、拒绝未知字段，并限制标题、正文、描述和标签的长度；布尔字段使用严格类型，不能用 `1` 代替 `true`。空 PATCH 会返回 422。统一异常响应为 `error.status/message/details`：格式错误的 JSON 返回 400，资源不存在返回 404，字段或查询参数不合法返回 422。前端增加标签输入、删除按钮和可见错误提示。
 
-## Task 2: Extend extraction logic
-a. Links to relevant commits/issues
-> TODO
+### c. Graphite Diamond 审查结果
 
-b. PR Description
-> TODO
+本地 Diamond 风格复核结论：**未发现阻塞问题**。
 
-c. Graphite Diamond generated code review
-> TODO
+- 正确性：CRUD 路径完整，删除后再次读取会走 404；204 响应不带 JSON。
+- API 设计：PATCH 只改显式提供的字段；非法排序字段不再静默回退。
+- 安全性：响应内容通过 DOM `textContent` 展示；请求额外字段被拒绝。
+- 建议：生产环境应使用 Alembic 管理已有数据库的模式迁移，而不是只依赖 `create_all`。这是部署建议，不影响全新数据库运行。
 
-## Task 3: Try adding a new model and relationships
-a. Links to relevant commits/issues
-> TODO
+## 任务 2：扩展提取逻辑
 
-b. PR Description
-> TODO
+### a. 相关提交或议题
 
-c. Graphite Diamond generated code review
-> TODO
+`N/A（本地工作区，未创建远程 PR/issue，提交哈希不可用）`
 
-## Task 4: Improve tests for pagination and sorting
-a. Links to relevant commits/issues
-> TODO
+### b. PR 描述
 
-b. PR Description
-> TODO
+新增结构化提取接口 `extract_action_item_details`，结果包含描述、勾选状态、截止日期、优先级、负责人和标签。规则支持 `[ ]`/`[x]`、`TODO:`/`ACTION:`、句末感叹号和常见祈使动词；识别 `@high`、`@low`、首个 `@name` 与去重后的 `#tag`。日期支持 ISO、`MM/DD/YYYY`、today/tonight/tomorrow/next week，以及 `by/before/on Friday` 等星期表达。非法日期不会导致提取崩溃。原有 `extract_action_items` 继续返回描述字符串，避免破坏原调用方。
 
-c. Graphite Diamond generated code review
-> TODO
+### c. Graphite Diamond 审查结果
 
-## Brief Reflection 
-a. The types of comments you typically made in your manual reviews (e.g., correctness, performance, security, naming, test gaps, API shape, UX, docs).
-> TODO 
+本地 Diamond 风格复核结论：**未发现阻塞问题**。
 
-b. A comparison of **your** comments vs. **Graphite’s** AI-generated comments for each PR.
-> TODO
+- 正确性：`@high/@low` 不会被误当负责人；复合标签保持输入顺序并去重。
+- 可测试性：函数接受可选 `today`，相对日期测试不依赖运行当天。
+- 边界：无行动信号的普通句子被忽略，已勾选任务保留 `completed=True`。
+- 建议：当前是轻量英文启发式，不等同于完整自然语言日期解析器；若扩展多语言，应引入明确词典和时区策略。
 
-c. When the AI reviews were better/worse than yours (cite specific examples)
-> TODO
+## 任务 3：添加新模型和关系
 
-d. Your comfort level trusting AI reviews going forward and any heuristics for when to rely on them.
->TODO 
+### a. 相关提交或议题
 
+`N/A（本地工作区，未创建远程 PR/issue，提交哈希不可用）`
+
+### b. PR 描述
+
+新增 `Tag` 模型和 `note_tags` 联结表，建立 `Note` 与 `Tag` 的多对多关系；外键删除规则避免遗留联结记录。笔记创建和更新可直接提交标签名，不存在的标签自动创建，匹配时忽略大小写。新增标签的列表、创建、单条读取和删除接口；重复标签返回 400。笔记响应内嵌标签，并支持同时按全文关键词和标签筛选。
+
+### c. Graphite Diamond 审查结果
+
+本地 Diamond 风格复核结论：**未发现阻塞问题**。
+
+- 数据完整性：标签名有唯一索引，联结表使用复合主键，避免重复关系。
+- ORM 使用：双方通过 `back_populates` 保持一致，并用 `selectin` 避免列表序列化时逐条延迟查询。
+- API 行为：标签大小写匹配一致；替换笔记标签不会删除仍可复用的标签实体。
+- 建议：SQLite 对大小写唯一性的规则与其他数据库可能不同，因此应用层仍保留忽略大小写的重复检查。
+
+## 任务 4：改进分页和排序测试
+
+### a. 相关提交或议题
+
+`N/A（本地工作区，未创建远程 PR/issue，提交哈希不可用）`
+
+### b. PR 描述
+
+新增分页、排序、筛选组合、CRUD、严格验证、错误格式、标签关系和扩展提取测试。分页覆盖空数据库、刚好越界、远端越界、首页/末页及非法上下界；排序覆盖升序、降序和自定义字段；组合筛选覆盖笔记的 `q + tag` 与行动项的 `completed + q`。相同排序值增加 `id` 次排序，保证分页稳定。
+
+### c. Graphite Diamond 审查结果
+
+本地 Diamond 风格复核结论：**测试覆盖了任务要求的可观察行为**。
+
+- 测试直接断言返回顺序和空页，不只检查状态码。
+- 非法 `skip/limit/sort` 均断言 422 和统一错误结构。
+- 组合筛选数据同时包含应命中和不应命中的记录，能发现条件被错误地用 OR 连接。
+- 受作业约束，本次只编写测试，没有执行 Python 或 pytest；因此不声称测试已运行通过。
+
+## 简短反思
+
+### a. 人工审查通常关注什么
+
+我先看正确性和 API 契约：状态码是否准确、更新和删除是否覆盖不存在资源、分页是否稳定。然后看数据完整性、输入边界、安全输出和测试是否能捕获真实回归。命名、格式等非阻塞意见最后处理。
+
+### b. 各任务中人工意见与 AI 风格意见的比较
+
+- 任务 1：人工重点是完整 CRUD、空 PATCH 和一致错误结构；AI 风格复核更容易系统列出额外字段、严格布尔值和排序白名单等输入面。
+- 任务 2：人工重点是规则冲突，例如 `@high` 不能成为负责人；AI 风格复核更擅长罗列日期写法，但需要人工限定“轻量启发式”的范围。
+- 任务 3：人工重点是关系生命周期与接口是否好用；AI 风格复核补充了跨数据库大小写唯一性和迁移工具建议。
+- 任务 4：人工重点是测试能否因真实缺陷失败；AI 风格复核适合按空页、越界、正反排序、组合条件逐项检查遗漏。
+
+### c. AI 审查的优势和不足
+
+优势是覆盖面快。例如它能一次提醒非法排序、`limit=0`、`limit=201` 和远端空页，而人工容易只检查正常分页。不足是容易给出超出作业范围的通用建议，例如立刻引入完整 NLP 库或迁移框架；这些建议不一定值得当前复杂度。`@high` 与负责人冲突、相对日期测试需要固定 `today`，仍依赖理解实际规则的人做判断。
+
+### d. 未来如何信任 AI 审查
+
+我会把 AI 当作第二检查表，不当作最终批准者。低风险、可由测试直接证明的命名、遗漏分支和常见边界可以较多依赖 AI；涉及数据迁移、权限、安全、并发、日期语义或破坏性 API 变更时，必须人工阅读实现并运行针对性场景。经验法则是：若错误会丢数据、泄露信息或改变公开契约，就不能仅凭 AI 的“未发现问题”合并。
 
 

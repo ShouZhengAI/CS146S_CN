@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Django Taskboard{% endblock %}</title>
+  <style>
+    :root{font-family:system-ui,sans-serif;color:#172033;background:#f4f6fb}*{box-sizing:border-box}body{margin:0}.shell{width:min(860px,calc(100% - 32px));margin:48px auto}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}h1{margin:0;font-size:clamp(2rem,6vw,3.2rem)}a{color:#3157d5;text-decoration:none}.button,button{display:inline-block;border:0;border-radius:10px;background:#3157d5;color:white;padding:11px 17px;font:inherit;font-weight:700;cursor:pointer}.muted{color:#687086}.card{background:white;border:1px solid #dde2ee;border-radius:16px;padding:20px;box-shadow:0 8px 28px #1720330c;margin-bottom:14px}.task{display:flex;gap:16px;align-items:flex-start}.task-main{flex:1;min-width:0}.task h2{font-size:1.1rem;margin:0}.task p{white-space:pre-wrap}.done h2{text-decoration:line-through;color:#8a92a6}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:15px}.link-button{border:0;background:none;padding:0;color:#3157d5;font-weight:600}.danger{color:#c43434}.empty{text-align:center;padding:50px}.field{margin:0 0 18px}.field label{display:block;font-weight:700;margin-bottom:7px}input[type=text],textarea{width:100%;border:1px solid #cbd2e1;border-radius:10px;padding:11px;font:inherit}.errors{color:#c43434}.back{display:inline-block;margin-top:18px}@media(max-width:580px){.top{align-items:flex-start;flex-direction:column}.task{flex-direction:column}}
+  </style>
+</head>
+<body><main class="shell">{% block content %}{% endblock %}</main></body>
+</html>

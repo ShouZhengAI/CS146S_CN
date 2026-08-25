@@ -1,55 +1,55 @@
-# Week 7 – Exploring AI Code Review Using Graphite
+# 第 7 周——使用 Graphite 探索 AI 代码审查
 
-## Assignment Overview
-In this assignment, you will practice agent-driven development and AI-assisted code review on a more advanced codebase. You will implement the tasks in `week7/docs/TASKS.md`, validate your work with tests and manual review, and compare your own review notes with AI-generated code reviews.
+## 作业概述
+在本次作业中，你将在一个更为复杂的代码库上练习智能体驱动开发和 AI 辅助代码审查。你需要实现 `week7/docs/TASKS.md` 中的任务，通过测试和人工审查验证工作成果，并将自己的审查意见与 AI 生成的代码审查进行比较。
 
-## Get Started with Graphite
-1. Sign up for Graphite: https://app.graphite.dev/signup
-2. Upon sign up, you can claim your 30-day free trial.
-3. After the 30 days, you can use code **CS146S** to claim free Graphite under their education program. 
-
-
-## What to do
-Implement the tasks from `week7/docs/TASKS.md` using an AI coding tool of your choice (e.g. Cursor, Copilot, Claude, etc.).
-
-### For each task:
-   1. Create a separate branch.
-   2. Implement the task with your AI tool using a 1-shot prompt. 
-   3. Manually review the changes line-by-line. Fix issues you notice and add explanatory commit messages where helpful. You may also pair with a classmate to review each other’s code instead of reviewing your own changes.
-   4. Open a Pull Request (PR) for the task. Ensure your PRs include:
-      - Description of the problem and your approach.
-      - Summary of testing performed (include commands and results) and any added/updated tests.
-      - Notable tradeoffs, limitations, or follow-ups.
-   5. Use Graphite Diamond to generate an AI-assisted code review on the PR.
-   6. Document the results of your PR in the `writeup.md`.
+## Graphite 入门
+1. 注册 Graphite：https://app.graphite.dev/signup
+2. 注册后，你可以领取 30 天免费试用。
+3. 30 天试用期结束后，可以使用代码 **CS146S**，通过其教育计划免费使用 Graphite。
 
 
-## Deliverables
-In your `writeup.md`, we are looking for the follwoing:
+## 要完成的工作
+使用你选择的 AI 编程工具（例如 Cursor、Copilot、Claude 等）实现 `week7/docs/TASKS.md` 中的任务。
 
-- Four PRs, one per completed task, each with:
-  - Clear PR description
-  - Links to relevant commits/issues.
-  - Graphite Diamond AI review comments visible on the PR
-
-- A brief reflection addressing the following:
-  - The types of comments you typically made in your manual reviews (e.g., correctness, performance, security, naming, test gaps, API shape, UX, docs).
-  - A comparison of **your** comments vs. **Graphite’s** AI-generated comments for each PR.
-  - When the AI reviews were better/worse than yours (cite specific examples)
-  - Your comfort level trusting AI reviews going forward and any heuristics for when to rely on them.
-
-## Evaluation criteria (100 points total)
-- 20 points per completed task
-  - Technical correctness and completeness of each task.
-  - Code quality: readability, naming, structure, error handling, and tests.
-  - Thoughtfulness and depth of manual review notes
-  - Graphite Diamond AI generated code review
-- 20 points for the brief reflection
-  - Insightful comparison between your review and Graphite’s AI review
-  - Description of your personal comfort level with AI Reviews
+### 对于每项任务：
+   1. 创建一个独立分支。
+   2. 使用 AI 工具，通过一次性提示（1-shot prompt）实现该任务。
+   3. 逐行人工审查改动。修复你发现的问题，并在有助于说明情况时添加解释性的提交消息。你也可以与同学结对，相互审查对方的代码，而不是审查自己的改动。
+   4. 为该任务创建一个拉取请求（Pull Request，PR）。确保 PR 包含：
+      - 对问题及解决方案的说明。
+      - 已执行测试的摘要（包括命令和结果），以及新增或更新的测试。
+      - 值得注意的权衡、局限性或后续工作。
+   5. 使用 Graphite Diamond 为 PR 生成 AI 辅助代码审查。
+   6. 在 `writeup.md` 中记录该 PR 的结果。
 
 
-## Submission Instructions
-1. Make sure you have all changes pushed to your remote repository for grading.
-2. Make sure you've added both brentju and febielin as collaborators on your assignment repository.
-2. Submit via Gradescope. 
+## 应提交的内容
+在 `writeup.md` 中，我们希望看到以下内容：
+
+- 四个 PR，每个已完成的任务对应一个 PR，并且每个 PR 都包含：
+  - 清晰的 PR 描述
+  - 相关提交或议题的链接。
+  - PR 上清晰可见的 Graphite Diamond AI 审查意见
+
+- 一篇简短反思，回答以下问题：
+  - 你通常在人工审查中提出哪些类型的意见（例如正确性、性能、安全性、命名、测试缺口、API 设计、用户体验、文档）。
+  - 针对每个 PR，比较**你的**意见与 **Graphite** 生成的 AI 审查意见。
+  - AI 审查在哪些方面优于或逊于你的审查（请引用具体示例）。
+  - 未来你对信任 AI 审查的接受程度，以及判断何时可以依赖 AI 审查的经验法则。
+
+## 评分标准（总计 100 分）
+- 每项已完成的任务 20 分
+  - 每项任务在技术上的正确性和完整性。
+  - 代码质量：可读性、命名、结构、错误处理和测试。
+  - 人工审查意见的思考深度与周全程度
+  - Graphite Diamond 生成的 AI 代码审查
+- 简短反思 20 分
+  - 对你的审查与 Graphite AI 审查进行有洞见的比较
+  - 描述你个人对 AI 审查的信任程度
+
+
+## 提交说明
+1. 确保已将所有改动推送到远程仓库，以供评分。
+2. 确保已将 brentju 和 febielin 添加为作业仓库的协作者。
+3. 通过 Gradescope 提交。

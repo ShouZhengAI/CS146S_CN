@@ -1,70 +1,130 @@
-# Week 4 Write-up
-Tip: To preview this markdown file
-- On Mac, press `Command (⌘) + Shift + V`
-- On Windows/Linux, press `Ctrl + Shift + V`
+# 第 4 周书面报告
 
-## INSTRUCTIONS
+## 提交信息
 
-Fill out all of the `TODO`s in this file.
+姓名：**未提供（提交前填写本人姓名）**
 
-## SUBMISSION DETAILS
+SUNet ID：**未提供（提交前填写本人 SUNet ID）**
+引用资料：**Anthropic《Claude Code: Best practices for agentic coding》、Claude Code 自定义斜杠命令文档与子智能体文档、FastAPI OpenAPI 文档**
 
-Name: **TODO** \
-SUNet ID: **TODO** \
-Citations: **TODO**
+我大约花了 **8** 小时完成这项作业。
 
-This assignment took me about **TODO** hours to do. 
+## 你的回答
 
+### 自动化工作流 #1：测试与覆盖率 `/tests`
 
-## YOUR RESPONSES
-### Automation #1
-a. Design inspiration (e.g. cite the best-practices and/or sub-agents docs)
-> TODO
+#### a. 设计灵感
 
-b. Design of each automation, including goals, inputs/outputs, steps
-> TODO
+Anthropic 的最佳实践建议给智能体清楚、可验证的目标，并让反馈循环尽量短。测试命令因此分成“快速失败”和“覆盖率”两段：有失败时先解决首个根因，全部通过后才计算覆盖率，避免长日志掩盖重点。
 
-c. How to run it (exact commands), expected outputs, and rollback/safety notes
-> TODO
+#### b. 目标、输入、输出和步骤
 
-d. Before vs. after (i.e. manual workflow vs. automated workflow)
-> TODO
+- **目标**：用一个命令得到测试结论、首个失败摘要和覆盖率缺口。
+- **输入**：可选的测试路径、`-k` 表达式或 marker；无输入时使用 `backend/tests`。
+- **输出**：通过/跳过数量；失败时给出测试名、相关 traceback、可能的源文件和下一步；成功时给出总覆盖率和缺失行。
+- **步骤**：先执行带 `--maxfail=1 -x` 的快速测试；失败则停止并摘要；通过后使用 `pytest-cov` 再跑一次并报告 `term-missing`。
 
-e. How you used the automation to enhance the starter application
-> TODO
+#### c. 运行、预期输出和安全
 
+```text
+/tests
+/tests backend/tests/test_notes.py
+/tests -k search
+```
 
-### Automation #2
-a. Design inspiration (e.g. cite the best-practices and/or sub-agents docs)
-> TODO
+等价的核心命令：
 
-b. Design of each automation, including goals, inputs/outputs, steps
-> TODO
+```bash
+pytest -q backend/tests --maxfail=1 -x
+pytest -q backend/tests --cov=backend.app --cov-report=term-missing
+```
 
-c. How to run it (exact commands), expected outputs, and rollback/safety notes
-> TODO
+预期先看到 `N passed`；随后看到每个模块的语句数、缺失行和总覆盖率。工作流只读代码和测试数据库，不改业务文件，不删除持久化数据库。若需要中断可直接停止命令；因为没有写入，所以不需要回滚。
 
-d. Before vs. after (i.e. manual workflow vs. automated workflow)
-> TODO
+#### d. 自动化前后对比
 
-e. How you used the automation to enhance the starter application
-> TODO
+**之前**：开发者分别记忆测试、快速失败、覆盖率参数；失败后在整段日志中手动找首个根因。
 
+**之后**：一个命令固定执行顺序；失败立即给短摘要，通过才提供覆盖率，减少重复输入和误报“覆盖率成功”。
 
-### *(Optional) Automation #3*
-*If you choose to build additional automations, feel free to detail them here!*
+#### e. 如何增强应用
 
-a. Design inspiration (e.g. cite the best-practices and/or sub-agents docs)
-> TODO
+我用该流程覆盖了笔记搜索（标题/正文、不区分大小写）、新增/读取、更新、删除、404、空白输入校验，以及行动项重复完成。服务测试还覆盖标签顺序、去重和聚合提取。测试直接约束新增 API 的状态码和响应载荷。
 
-b. Design of each automation, including goals, inputs/outputs, steps
-> TODO
+### 自动化工作流 #2：OpenAPI 文档同步 `/docs-sync`
 
-c. How to run it (exact commands), expected outputs, and rollback/safety notes
-> TODO
+#### a. 设计灵感
 
-d. Before vs. after (i.e. manual workflow vs. automated workflow)
-> TODO
+Anthropic 建议把仓库工具和验证标准写进可复用提示词。FastAPI 已生成权威 OpenAPI，因此不应凭记忆维护第二份接口定义；工作流以运行中的 `/openapi.json` 为事实来源，只把它转换为易读文档。
 
-e. How you used the automation to enhance the starter application
-> TODO
+#### b. 目标、输入、输出和步骤
+
+- **目标**：保持 `docs/API.md` 与实际路由、Pydantic 模型一致。
+- **输入**：可选服务地址，默认 `http://127.0.0.1:8000`。
+- **输出**：更新后的端点表、请求/响应示例、校验与错误说明，以及 added/changed/removed 差异摘要。
+- **步骤**：读取路由、schema 和当前文档；获取 OpenAPI；逐项比较 path、method、参数、状态码与模型；只修改 `docs/API.md`；再次读取 OpenAPI 并报告剩余偏差。
+
+#### c. 运行、预期输出和安全
+
+```bash
+make run
+```
+
+```text
+/docs-sync http://127.0.0.1:8000
+```
+
+预期输出类似 `added: PUT /notes/{note_id}`、`changed: NoteCreate validation`、`remaining drift: none`。若服务不可达，命令停止并要求启动服务，不能猜 schema。它不修改应用代码和 OpenAPI，不删除人工安全说明；更新不满意时只需恢复 `docs/API.md`。
+
+#### d. 自动化前后对比
+
+**之前**：逐个打开 router 和 schema，再手工核对文档，容易漏掉 204、404 或长度约束。
+
+**之后**：用 OpenAPI 做完整清单并二次比较；同样输入可重复运行，文档没有变化时不会制造无意义 diff。
+
+#### e. 如何增强应用
+
+新增搜索、笔记 PUT/DELETE、行动项 complete 和校验后，我用同步流程整理 `docs/API.md`。文档现在包含所有九个业务端点、完整 JSON 示例、查询规则、400/404/422 和删除空响应，前后端可以按同一契约开发。
+
+### 自动化工作流 #3：安全模块重构 `/refactor-module`
+
+#### a. 设计灵感
+
+模块重命名容易留下旧 import。最佳实践强调先探索、再修改、最后用机械检查闭环，因此该命令把“查引用—移动—全量更新—查残留—验证”固化为一个干净切换流程。
+
+#### b. 目标、输入、输出和步骤
+
+- **目标**：移动或重命名 Python 模块，同时更新全部调用方，不留兼容壳。
+- **输入**：旧路径、新路径，可选符号改名；路径不完整时拒绝猜测。
+- **输出**：修改文件列表、旧引用扫描结果、Ruff/Black/pytest 结果和有意保留的文本引用。
+- **步骤**：读取模块、import、测试与文档；跑最窄基线；移动并更新引用；执行 lint、格式检查和相关测试；最后再次搜索旧路径。
+
+#### c. 运行、预期输出和安全
+
+```text
+/refactor-module backend/app/services/extract.py backend/app/services/parser.py extract_tags=parse_tags
+```
+
+验证命令包括：
+
+```bash
+ruff check backend
+black --check backend
+pytest -q backend/tests --maxfail=1
+```
+
+预期报告所有调用方已改、旧 import 为零、检查通过。命令禁止破坏性 Git 操作和数据库删除；失败时保留可检查的工作树，并列出本次涉及文件，开发者可只恢复这些文件。
+
+#### d. 自动化前后对比
+
+**之前**：手动移动后逐文件修 import，通常等到运行时才发现遗漏。
+
+**之后**：修改前后各扫描一次引用，并用静态检查和测试形成闭环；明确要求干净切换，避免长期维护两个模块名。
+
+#### e. 如何增强应用
+
+本次没有为了展示命令而做无价值的模块改名；我用它的检查清单审视 `services/extract.py` 的扩展边界。行动项提取保持原函数，标签提取成为独立纯函数，`extract_note` 负责聚合，调用契约清楚且测试覆盖。这样验证了工作流，也避免无意义文件 churn。
+
+## 综合结果
+
+仓库级 `CLAUDE.md` 补充了架构图、常用命令、风格、API 错误约定和智能体执行顺序。三个命令职责互不混杂：测试负责行为反馈，文档同步负责契约，重构负责结构安全。应用最终支持不区分大小写搜索、笔记完整 CRUD、行动项完成、标签解析、边界校验、前端交互和明确错误展示。

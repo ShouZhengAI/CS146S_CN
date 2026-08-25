@@ -43,14 +43,15 @@ def get_session() -> Iterator[Session]:
 def apply_seed_if_needed() -> None:
     db_path = Path(DEFAULT_DB_PATH)
     db_path.parent.mkdir(parents=True, exist_ok=True)
-    newly_created = not db_path.exists()
-    if newly_created:
-        db_path.touch()
-
     seed_file = Path("./data/seed.sql")
-    if newly_created and seed_file.exists():
-        with engine.begin() as conn:
-            sql = seed_file.read_text()
-            if sql.strip():
-                for statement in [s.strip() for s in sql.split(";") if s.strip()]:
-                    conn.execute(text(statement))
+    if not seed_file.exists():
+        return
+
+    with engine.begin() as conn:
+        notes_count = conn.execute(text("SELECT COUNT(*) FROM notes")).scalar_one()
+        actions_count = conn.execute(text("SELECT COUNT(*) FROM action_items")).scalar_one()
+        if notes_count or actions_count:
+            return
+        sql = seed_file.read_text()
+        for statement in [part.strip() for part in sql.split(";") if part.strip()]:
+            conn.execute(text(statement))

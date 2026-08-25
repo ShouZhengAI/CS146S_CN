@@ -6,19 +6,21 @@ async function fetchJSON(url, options) {
 
 async function loadNotes(params = {}) {
   const list = document.getElementById('notes');
-  list.innerHTML = '';
+  list.replaceChildren();
   const query = new URLSearchParams(params);
   const notes = await fetchJSON('/notes/?' + query.toString());
   for (const n of notes) {
     const li = document.createElement('li');
-    li.innerHTML = `<strong>${n.title}</strong>: ${n.content}`;
+    const title = document.createElement('strong');
+    title.textContent = n.title;
+    li.append(title, document.createTextNode(`: ${n.content}`));
     list.appendChild(li);
   }
 }
 
 async function loadActions(params = {}) {
   const list = document.getElementById('actions');
-  list.innerHTML = '';
+  list.replaceChildren();
   const query = new URLSearchParams(params);
   const items = await fetchJSON('/action-items/?' + query.toString());
   for (const a of items) {

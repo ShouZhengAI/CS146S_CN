@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS notes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  content TEXT NOT NULL
+  title VARCHAR(200) NOT NULL,
+  content TEXT NOT NULL,
+  created_at DATETIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS action_items (
@@ -10,9 +11,20 @@ CREATE TABLE IF NOT EXISTS action_items (
   completed BOOLEAN NOT NULL DEFAULT 0
 );
 
-INSERT INTO notes (title, content) VALUES
-  ('Welcome', 'This is a starter note. TODO: explore the app!'),
-  ('Demo', 'Click around and add a note. Ship feature!');
+CREATE TABLE IF NOT EXISTS tags (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS note_tags (
+  note_id INTEGER NOT NULL REFERENCES notes(id) ON DELETE CASCADE,
+  tag_id INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+  PRIMARY KEY (note_id, tag_id)
+);
+
+INSERT INTO notes (title, content, created_at) VALUES
+  ('Welcome', 'This is a starter note. TODO: explore the app!', CURRENT_TIMESTAMP),
+  ('Demo', 'Click around and add a note. Ship feature!', CURRENT_TIMESTAMP);
 
 INSERT INTO action_items (description, completed) VALUES
   ('Try pre-commit', 0),

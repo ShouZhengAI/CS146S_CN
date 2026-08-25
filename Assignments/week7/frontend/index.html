@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Modern Software Dev Starter</title>
+    <title>CS146S Notes and Actions</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
     <main>
-      <h1>Modern Software Dev Starter (Week 6)</h1>
+      <h1>Notes and Action Items (Week 7)</h1>
 
       <section>
         <h2>Notes</h2>
         <form id="note-form">
           <input id="note-title" placeholder="Title" required />
           <input id="note-content" placeholder="Content" required />
+          <input id="note-tags" placeholder="Tags (comma-separated)" />
           <button type="submit">Add</button>
         </form>
         <div style="margin:.25rem 0;">
           <input id="note-search" placeholder="Search" />
           <button id="note-search-btn">Search</button>
         </div>
+        <p id="error" role="alert" aria-live="polite"></p>
         <ul id="notes"></ul>
       </section>
 

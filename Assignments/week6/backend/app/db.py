@@ -1,10 +1,9 @@
 import os
 from collections.abc import Iterator
 from contextlib import contextmanager
-from pathlib import Path
 
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session, sessionmaker
 
 load_dotenv()
@@ -41,18 +40,30 @@ def get_session() -> Iterator[Session]:
 
 
 def apply_seed_if_needed() -> None:
-    db_path = Path(DEFAULT_DB_PATH)
-    db_path.parent.mkdir(parents=True, exist_ok=True)
-    newly_created = not db_path.exists()
-    if newly_created:
-        db_path.touch()
+    """Insert the demo rows through the ORM when their tables are empty."""
+    from .models import ActionItem, Note
 
-    seed_file = Path("./data/seed.sql")
-    if newly_created and seed_file.exists():
-        with engine.begin() as conn:
-            sql = seed_file.read_text()
-            if sql.strip():
-                for statement in [s.strip() for s in sql.split(";") if s.strip()]:
-                    conn.execute(text(statement))
+    with get_session() as session:
+        has_notes = session.execute(select(Note.id).limit(1)).first() is not None
+        has_action_items = (
+            session.execute(select(ActionItem.id).limit(1)).first() is not None
+        )
+        if not has_notes:
+            session.add_all(
+                [
+                    Note(
+                        title="Welcome",
+                        content="This is a starter note. TODO: explore the app!",
+                    ),
+                    Note(title="Demo", content="Click around and add a note. Ship feature!"),
+                ]
+            )
+        if not has_action_items:
+            session.add_all(
+                [
+                    ActionItem(description="Try pre-commit", completed=False),
+                    ActionItem(description="Run tests", completed=False),
+                ]
+            )
 
 

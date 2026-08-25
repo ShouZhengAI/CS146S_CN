@@ -1,0 +1,8 @@
+{% extends "taskboard/base.html" %}
+{% block title %}删除任务 · Taskboard{% endblock %}
+{% block content %}
+<h1>删除任务</h1>
+<div class="card"><p>确定删除“<strong>{{ task.title }}</strong>”吗？此操作无法撤销。</p>
+<form method="post">{% csrf_token %}<button type="submit" style="background:#c43434">确认删除</button></form></div>
+<a class="back" href="{% url 'task-list' %}">← 取消并返回</a>
+{% endblock %}

@@ -10,12 +10,17 @@
     <main>
       <h1>Modern Software Dev Starter</h1>
 
+      <p id="status" role="alert"></p>
       <section>
         <h2>Notes</h2>
         <form id="note-form">
           <input id="note-title" placeholder="Title" required />
           <input id="note-content" placeholder="Content" required />
           <button type="submit">Add</button>
+        </form>
+        <form id="search-form">
+          <input id="search-query" type="search" placeholder="Search notes" />
+          <button type="submit">Search</button>
         </form>
         <ul id="notes"></ul>
       </section>

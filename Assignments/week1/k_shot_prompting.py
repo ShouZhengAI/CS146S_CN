@@ -1,5 +1,3 @@
-# Acknowledgement:github.com/sweetkruts/cs146s
-
 import os
 from dotenv import load_dotenv
 from ollama import chat
@@ -8,29 +6,27 @@ load_dotenv()
 
 NUM_RUNS_TIMES = 5
 
-# TODO: Fill this in!
+# 用多个示例明确演示“逐词反转”，并固定输出格式。
 YOUR_SYSTEM_PROMPT = """
-You are a helpful assistant that reverses the order of letters in a word. To reverse a word, take each letter and flip their positions completely - the first becomes last, second becomes second-to-last, etc.
+你是一个严格的字符串转换器。把输入中每个待处理单词的字母从右到左排列。
+保持字符的大小写和内容不变；只改变顺序。只输出转换后的结果，不要解释、不要加引号或标点。
 
-Examples:
+示例：
+输入：cat
+输出：tac
 
-Word: "http" (h-t-t-p)
-Reversed: "ptth"
+输入：hello
+输出：olleh
 
-Word: "status" (s-t-a-t-u-s)
-Reversed: "sutats"
+输入：prompt
+输出：tpmorp
 
-Word: "httpstatus" (h-t-t-p-s-t-a-t-u-s)
-Reversed: "sutatsptth"
-
-Process: Take the letters from right to left and write them in that order.
-
-Only output the reversed word, nothing else.
-
+输入：OpenAI
+输出：IAnepO
 """
 
 USER_PROMPT = """
-Reverse the order of letters in the following word. Only output the reversed word, no other text:
+将下列单词中的字母顺序反转。只输出反转后的单词，不要输出任何其他文本：
 
 httpstatus
 """
@@ -39,12 +35,12 @@ httpstatus
 EXPECTED_OUTPUT = "sutatsptth"
 
 def test_your_prompt(system_prompt: str) -> bool:
-    """Run the prompt up to NUM_RUNS_TIMES and return True if any output matches EXPECTED_OUTPUT.
+    """最多运行 NUM_RUNS_TIMES 次提示；若任意一次输出与 EXPECTED_OUTPUT 匹配，则返回 True。
 
-    Prints "SUCCESS" when a match is found.
+    找到匹配项时打印“SUCCESS”。
     """
     for idx in range(NUM_RUNS_TIMES):
-        print(f"Running test {idx + 1} of {NUM_RUNS_TIMES}")
+        print(f"正在运行第 {idx + 1}/{NUM_RUNS_TIMES} 次测试")
         response = chat(
             model="mistral-nemo:12b",
             messages=[
@@ -58,8 +54,8 @@ def test_your_prompt(system_prompt: str) -> bool:
             print("SUCCESS")
             return True
         else:
-            print(f"Expected output: {EXPECTED_OUTPUT}")
-            print(f"Actual output: {output_text}")
+            print(f"预期输出：{EXPECTED_OUTPUT}")
+            print(f"实际输出：{output_text}")
     return False
 
 if __name__ == "__main__":
