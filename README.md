@@ -13,14 +13,6 @@
 
 ---
 <table>
-<tr>
-<td width="180"><img src="Resource/imgs/ATLAS CLOUD LOGO_BLACK.png" alt="Atlas Cloud" width="150"></a></td>
-<td><a href="https://www.atlascloud.ai/zh?utm_source=github&utm_medium=link&utm_campaign=CS146S_CN">Atlas Cloud</a> is a full-modal AI inference platform that gives developers a single AI API to access video generation, image generation, and LLM APIs. Instead of managing multiple vendor integrations, you connect once and get unified access to 300+ curated models across all modalities..
-
-Check out Atlas Cloud's new coding plan promotion for more budget-friendly API access：<a href="https://www.atlascloud.ai/console/coding-plan">coding-plan</a>
-</td>
-</tr>
-</tr>
 
 <tr>
 <td width="180"><img src="Resource/imgs/apimart.png" alt="Atlas Cloud" width="150"></a></td>
