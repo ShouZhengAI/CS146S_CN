@@ -9,6 +9,16 @@
 > 本项目长期维护，希望能帮到各位入门 vibe coding 的朋友，欢迎Star，分享与提PR🌟~  
 > 非官方项目、Fall 2025 已归档、Fall 2026 跟踪中、内容来源与版权归属原课程方。
 
+
+
+**欢迎加入 动手学CS146S 交流群一起讨论，群内不定期分享由赞助商提供的大模型额度，若群二维码过期请添加个人微信**:
+<div align="center">
+  <img src="Resource/imgs/group10-8.png" width="20%" height="auto">,<img src="Resource/imgs/personinfo.png" width="20%" height="auto">
+</div>
+
+> 三群开启，感谢大家的热情参与
+--- 
+
 🌟 付费赞助广告位：联系邮箱szwang.scholar@gmail.com，在文档内展示您的品牌和产品。
 <table>
 <tr>
@@ -110,11 +120,18 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 ---
 
 
-**欢迎加入 动手学CS146S 交流群一起讨论，群内不定期分享由赞助商提供的大模型额度，若群二维码过期请添加个人微信**:
-<div align="center">
-  <img src="Resource/imgs/group8-21.png" width="20%" height="auto">,<img src="Resource/imgs/personinfo.png" width="20%" height="auto">
-</div>
+# AI Agent/Skills 推荐（待办）
+## 代码生产
 
+## 科研辅助
+
+## 个人成长
+
+## 开箱即用
+
+
+
+---
 
 
 # 许可证
@@ -123,3 +140,4 @@ Check out Atlas Cloud's new coding plan promotion for more budget-friendly API a
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/chart?repos=ShouZhengAI/CS146S_CN&type=timeline&legend=top-left)](https://www.star-history.com/?repos=ShouZhengAI%2FCS146S_CN&type=timeline&legend=top-left)
+
